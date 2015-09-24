@@ -1,0 +1,8 @@
+- [ ] readme
+- [ ] license
+- [ ] push to github
+- [ ] finish emacs
+- [ ] integrate other current dotfiles
+- [ ] make list of other dotfiles to make eventually
+
+* TO DO [%]
