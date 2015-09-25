@@ -3,10 +3,15 @@
   
   :demand t
   
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; other packages
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   :ensure god-mode
+  :ensure evil-commentary
 
   :config
   (evil-mode 1)
+  (evil-commentary-mode)
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; functions

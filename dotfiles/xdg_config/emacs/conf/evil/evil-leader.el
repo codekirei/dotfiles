@@ -2,11 +2,17 @@
 (use-package evil-leader
   
   :ensure evil
+  :ensure evil-commentary
   
   :config
   (global-evil-leader-mode)
   (evil-leader/set-leader ",")
-  
+
+  ;; global
+  (evil-leader/set-key
+    "tc" 'evil-commentary-line
+  )
+
   ;; org mode
   (evil-leader/set-key-for-mode 'org-mode
     "h" 'org-table-previous-field
@@ -20,4 +26,5 @@
     "s" 'org-table-sort-lines
     "-" 'org-table-insert-hline
   )
+
 )
