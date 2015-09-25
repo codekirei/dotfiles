@@ -17,25 +17,6 @@
   ;; functions
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-  ;; conditionally exit insert mode
-  (evil-define-command my/exit-insert-mode ()
-    :repeat change
-    (interactive)
-    (let ((modified (buffer-modified-p))
-          ;; modifiable vars
-          (alpha "k")
-          (omega ?j) ; must use integer form
-          (delay 0.5))
-      (insert alpha)
-      (let ((evt (read-event (format "press %c to exit insert mode" omega) nil delay)))
-        (cond
-          ((null evt) (message ""))
-          ((and (integerp evt) (char-equal evt omega))
-            (delete-char -1)
-            (set-buffer-modified-p modified)
-            (push 'escape unread-command-events))
-          (t (setq unread-command-events (append unread-command-events (list evt))))))))
-
   ;; match indentation of previous line on newline
   (evil-define-command my/indent-newline ()
     (interactive)
@@ -150,7 +131,6 @@
   ;; insert
   (my/define-keys evil-insert-state-map [
     ["C-j" my/open-below]
-    ["k" my/exit-insert-mode]
     ;["<backtab>" my/unindent]
     ["TAB" tab-to-tab-stop]
     ["RET" my/indent-newline]
