@@ -162,7 +162,8 @@
   (add-hook 'org-mode-hook (lambda () 
     ;; normal
     (my/define-keys evil-normal-state-map [
-      ["TAB" org-cycle] 
+      ["TAB" org-cycle]
+      ["t" org-cycle]
       ["DEL" org-table-blank-field]
     ])
     ;; insert

@@ -1,6 +1,9 @@
 ;; turn off menu bar
 (menu-bar-mode -1)
 
+;; \n at end of file
+(setq require-final-newline t)
+
 ;; parens
 (show-paren-mode 1)
 (setq show-paren-style 'expression)
