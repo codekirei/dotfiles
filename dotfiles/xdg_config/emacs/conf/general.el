@@ -4,6 +4,10 @@
 ;; \n at end of file
 (setq require-final-newline t)
 
+;; whitespace
+(global-whitespace-mode)
+(setq whitespace-style '(face lines-tail tabs trailing empty))
+
 ;; parens
 (show-paren-mode 1)
 (setq show-paren-style 'expression)
