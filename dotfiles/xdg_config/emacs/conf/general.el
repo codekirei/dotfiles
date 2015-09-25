@@ -13,11 +13,14 @@
 (setq show-paren-style 'expression)
 (setq show-paren-delay 0)
 
-;; filesystem
-(defconst my/temp-files-dir "~/temp/emacs" "Directory for backups and auto-saves")
-(setq backup-directory-alist `((".*" . ,my/temp-files-dir)))
-(setq auto-save-file-name-transforms `((".*" ,my/temp-files-dir t)))
-(setq create-lockfiles nil)
+;; litter (backups, autosaves, lockfiles)
+(defconst my/temp-files-dir "~/temp/.emacs/" "Directory for backups and auto-saves")
+(setq
+  backup-by-copying t
+  backup-directory-alist `((".*" . ,my/temp-files-dir))
+  auto-save-file-name-transforms `((".*" ,my/temp-files-dir t))
+)
+;(setq create-lockfiles nil)
 
 ;; indentation and tabs
 (setq electric-indent-mode nil)
