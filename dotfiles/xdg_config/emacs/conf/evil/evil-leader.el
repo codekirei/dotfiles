@@ -1,9 +1,9 @@
 ;; evil-leader
 (use-package evil-leader
-  
+
   :ensure evil
   :ensure evil-commentary
-  
+
   :config
   (global-evil-leader-mode)
   (evil-leader/set-leader ",")
