@@ -1,6 +1,6 @@
 ;; ov.el -- overlays
 (use-package ov
-  
+
   :disabled t
   :config
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -10,7 +10,7 @@
     "Clear current overlay if edited."
     (let ((inhibit-modification-hooks t))
       (if _after (ov-clear (ov-beg _ov) (ov-end _ov)))))
-  
+
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; ORG MODE
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
