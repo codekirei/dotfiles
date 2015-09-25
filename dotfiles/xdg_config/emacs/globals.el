@@ -22,7 +22,7 @@
 
 (defun my/define-keys (keymap vector)
   "Simultaneously assign multiple keys to a specific keymap."
-  (mapc 
+  (mapc
     (lambda (pair)
       (define-key keymap (kbd (aref pair 0)) (aref pair 1)))
     vector))

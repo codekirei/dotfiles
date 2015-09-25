@@ -1,8 +1,8 @@
 ;; evil mode
 (use-package evil
-  
+
   :demand t
-  
+
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; other packages
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -35,14 +35,14 @@
             (set-buffer-modified-p modified)
             (push 'escape unread-command-events))
           (t (setq unread-command-events (append unread-command-events (list evt))))))))
-  
+
   ;; match indentation of previous line on newline
   (evil-define-command my/indent-newline ()
     (interactive)
     (let ((saved-column (current-indentation)))
-      (newline) 
+      (newline)
       (indent-to saved-column)))
-  
+
   ;; TODO: figure out a nicer way to pass params to my/post-open-newline
   ;;       without spamming setq
   (defun my/open-newline (direction count)
@@ -62,15 +62,15 @@
           ((string= direction "above") (evil-insert-newline-above)))
     (indent-to my/saved-column)
     (evil-insert-state 1))
-    
+
   (defun my/open-above (count)
     (interactive "p")
     (my/open-newline "above" count))
-    
+
   (defun my/open-below (count)
     (interactive "p")
     (my/open-newline "below" count))
-    
+
   (defun my/post-open-newline ()
     (let* ((new-line-count (- (my/get-line-count) my/saved-line-count))
            (lines-per-group (/ new-line-count my/saved-rep-count))
@@ -88,7 +88,7 @@
     )
     (remove-hook 'evil-normal-state-entry-hook 'my/post-open-newline)
   )
-    
+
   ;; match paren, brace, bracket, quote
   ;; TODO: make these more intelligent
   (defun my/match-brace ()
@@ -111,7 +111,7 @@
     (interactive)
     (insert "\"\"")
     (backward-char 1))
-    
+
   (defun my/evil-god-toggle ()
     "Toggle between evil and god mode"
     (interactive)
@@ -124,21 +124,21 @@
         (message "EVIL MODE")
         (evil-mode)
         (god-local-mode 0))))
-  
+
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; settings
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
   (setq-default evil-shift-width my/tab-offset)
   (setq-default evil-auto-indent nil)
-  
+
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; keybinds
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
   ;; normal
   (my/define-keys evil-normal-state-map [
-    ["C-u" evil-scroll-page-up] 
+    ["C-u" evil-scroll-page-up]
     ["j" evil-next-visual-line]
     ["k" evil-previous-visual-line]
     ["S" evil-substitute]
@@ -150,7 +150,7 @@
   ;; insert
   (my/define-keys evil-insert-state-map [
     ["C-j" my/open-below]
-    ["k" my/exit-insert-mode] 
+    ["k" my/exit-insert-mode]
     ;["<backtab>" my/unindent]
     ["TAB" tab-to-tab-stop]
     ["RET" my/indent-newline]
@@ -161,10 +161,10 @@
   ])
   ;; visual
   (my/define-keys evil-visual-state-map [
-    ["|" my/pipe-and-replace] 
+    ["|" my/pipe-and-replace]
   ])
-  ;; org-mode
-  (add-hook 'org-mode-hook (lambda () 
+  ;; org
+  (add-hook 'org-mode-hook (lambda ()
     ;; normal
     (my/define-keys evil-normal-state-map [
       ["TAB" org-cycle]
@@ -179,8 +179,12 @@
   ;; god mode
   (add-hook 'god-local-mode-hook (lambda ()
     (my/define-keys god-local-mode-map [
-      ["SPC" my/evil-god-toggle] 
+      ["SPC" my/evil-god-toggle]
       ["." repeat]
     ])))
+  ;; help
+  (my/define-keys special-mode-map [
+    ["s" evil-window-map]
+  ])
 
 )
