@@ -112,6 +112,7 @@
 
   (setq-default evil-shift-width my/tab-offset)
   (setq-default evil-auto-indent nil)
+  (setq evil-ex-visual-char-range t)
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; keybinds

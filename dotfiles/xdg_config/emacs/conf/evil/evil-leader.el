@@ -8,9 +8,27 @@
   (global-evil-leader-mode)
   (evil-leader/set-leader ",")
 
+  (defun my/fully-unindent ()
+    "Delete all whitespace preceding visual selection."
+    ;; clobbers "m" mark
+    (interactive)
+    (if evil-visual-state-local-minor-mode nil
+      (evil-visual-line))
+    (evil-exit-visual-state)
+    (evil-goto-mark 062) ; >
+    (evil-last-non-blank)
+    (evil-set-marker 109) ; m
+    (evil-goto-mark 060) ; <
+    (evil-beginning-of-line)
+    (evil-visual-char)
+    (evil-goto-mark 109) ; m
+    (evil-ex-call-command "`<,`>" "delete-whitespace-rectangle" nil)
+    )
+
   ;; global
   (evil-leader/set-key
-    "tc" 'evil-commentary-line
+    "c" 'evil-commentary-line
+    "<" 'my/fully-unindent
   )
 
   ;; org mode
