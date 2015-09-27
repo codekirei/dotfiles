@@ -74,31 +74,8 @@
     (remove-hook 'evil-normal-state-entry-hook 'my/post-open-newline)
   )
 
-  ;; match paren, brace, bracket, quote
-  ;; TODO: make these more intelligent
-  (defun my/match-brace ()
-    (interactive)
-    (let ((saved-column (current-indentation)))
-      (insert "{\n\n")
-      (indent-to saved-column)
-      (insert "}")
-      (evil-previous-line)
-      (indent-to (+ saved-column my/tab-offset))))
-  (defun my/match-paren ()
-    (interactive)
-    (insert "()")
-    (backward-char 1))
-  (defun my/match-bracket ()
-    (interactive)
-    (insert "[]")
-    (backward-char 1))
-  (defun my/match-quote ()
-    (interactive)
-    (insert "\"\"")
-    (backward-char 1))
-
   (defun my/evil-god-toggle ()
-    "Toggle between evil and god mode"
+    "Toggle between evil and god mode."
     (interactive)
     (if (bound-and-true-p evil-mode)
       (progn
@@ -159,13 +136,8 @@
   ;; insert
   (my/define-keys evil-insert-state-map [
     ["C-j" my/open-below]
-    ;["<backtab>" my/unindent]
     ["TAB" tab-to-tab-stop]
     ["RET" my/indent-newline]
-    ["{" my/match-brace]
-    ["\"" my/match-quote]
-    ["(" my/match-paren]
-    ["[" my/match-bracket]
   ])
   ;; visual
   (my/define-keys evil-visual-state-map [
