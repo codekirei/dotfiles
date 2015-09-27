@@ -4,14 +4,16 @@
   :demand t
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; other packages
+  ;; deps
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   :ensure god-mode
   :ensure evil-commentary
+  :ensure evil-surround
 
   :config
   (evil-mode 1)
   (evil-commentary-mode)
+  (global-evil-surround-mode 1)
 
   ;; diminish evil addons
   (diminish 'undo-tree-mode)
