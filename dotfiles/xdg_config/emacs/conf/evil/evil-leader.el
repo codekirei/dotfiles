@@ -3,6 +3,7 @@
 
   :ensure evil
   :ensure evil-commentary
+  :ensure expand-region
 
   :config
   (global-evil-leader-mode)
@@ -29,6 +30,8 @@
   (evil-leader/set-key
     ;; evil-commentary
     "c" 'evil-commentary-line
+    ;; expand-region
+    "e" 'er/expand-region
     ;; personal
     "<" 'my/fully-unindent
   )
