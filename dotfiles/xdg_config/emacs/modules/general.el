@@ -29,6 +29,7 @@
 (setq show-paren-style 'expression)
 (setq show-paren-delay 0)
 (electric-pair-mode 1)
+(set-face-background 'show-paren-match "green")
 
 ;; litter (backups, autosaves, lockfiles)
 (defconst my/temp-files-dir "~/temp/.emacs/" "Directory for backups and auto-saves")

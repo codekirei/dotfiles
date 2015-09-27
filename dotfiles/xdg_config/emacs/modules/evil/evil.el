@@ -9,6 +9,7 @@
   :ensure god-mode
   :ensure evil-commentary
   :ensure evil-surround
+  :ensure company
 
   :config
   (evil-mode 1)
@@ -94,6 +95,9 @@
   (setq-default evil-auto-indent nil)
   (setq evil-ex-visual-char-range t)
 
+  ;; fix bugged interaction with company
+  (evil-declare-not-repeat 'company-complete)
+
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; modeline
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -141,6 +145,9 @@
     ["C-j" my/open-below]
     ["TAB" tab-to-tab-stop]
     ["RET" my/indent-newline]
+    ["C-l" company-complete]
+    ["C-n" company-select-next]
+    ["C-p" company-select-previous]
   ])
   ;; visual
   (my/define-keys evil-visual-state-map [
