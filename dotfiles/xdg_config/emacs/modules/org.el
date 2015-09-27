@@ -1,4 +1,4 @@
-;; don't show leading stars in org-mode
+;; black out leading stars in org-mode
 (setq org-hide-leading-stars t)
 (add-hook 'org-mode-hook (lambda ()
   (set-face-foreground 'org-hide "black")))

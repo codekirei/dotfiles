@@ -7,10 +7,14 @@
 
 ;; truncate lines instead of wrapping
 (set-default 'truncate-lines t)
-(set-display-table-slot standard-display-table 'truncation ?⇄)
+(set-display-table-slot standard-display-table 'truncation ?˃)
 
-;; change vertical divider character
+;; change vertical border glyph
 (set-display-table-slot standard-display-table 'vertical-border ?┃)
+
+;; change selective display glyph
+(set-display-table-slot standard-display-table
+  'selective-display (string-to-vector " ▼"))
 
 ;; \n at end of file
 (setq require-final-newline t)
