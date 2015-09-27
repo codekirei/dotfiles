@@ -5,6 +5,13 @@
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 
+;; truncate lines instead of wrapping
+(set-default 'truncate-lines t)
+(set-display-table-slot standard-display-table 'truncation ?⇄)
+
+;; change vertical divider character
+(set-display-table-slot standard-display-table 'vertical-border ?┃)
+
 ;; \n at end of file
 (setq require-final-newline t)
 
