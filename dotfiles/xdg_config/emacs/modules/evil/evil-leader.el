@@ -4,6 +4,7 @@
   :ensure evil
   :ensure evil-commentary
   :ensure expand-region
+  :ensure yasnippet
 
   :config
   (global-evil-leader-mode)
@@ -34,6 +35,7 @@
     "e" 'er/expand-region
     ;; personal
     "<" 'my/fully-unindent
+    "va" 'align-regex
   )
 
   ;; org mode
@@ -46,7 +48,7 @@
     "L" 'org-table-move-column-right
     "o" (lambda () (interactive) (org-table-insert-row t) (evil-insert-state 1))
     "O" 'org-table-insert-row
-    "s" 'org-table-sort-lines
+    "ab" 'org-table-sort-lines
     "-" 'org-table-insert-hline
   )
 

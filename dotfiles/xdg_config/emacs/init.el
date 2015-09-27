@@ -18,4 +18,4 @@
 (setq use-package-always-ensure t)
 
 ;; load rest of modular conf
-(my/load-dir (concat my/config-dir "conf"))
+(my/load-dir (concat my/config-dir "modules"))

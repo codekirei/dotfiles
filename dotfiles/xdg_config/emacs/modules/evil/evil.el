@@ -137,6 +137,7 @@
   ])
   ;; insert
   (my/define-keys evil-insert-state-map [
+    ["C-e" yas-expand]
     ["C-j" my/open-below]
     ["TAB" tab-to-tab-stop]
     ["RET" my/indent-newline]
