@@ -11,6 +11,7 @@
 ;; whitespace
 (global-whitespace-mode)
 (setq whitespace-style '(face lines-tail tabs trailing empty))
+(diminish 'global-whitespace-mode)
 
 ;; parens
 (show-paren-mode 1)

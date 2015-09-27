@@ -13,6 +13,10 @@
   (evil-mode 1)
   (evil-commentary-mode)
 
+  ;; diminish evil addons
+  (diminish 'undo-tree-mode)
+  (diminish 'evil-commentary-mode)
+
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; functions
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -98,21 +102,44 @@
     (interactive)
     (if (bound-and-true-p evil-mode)
       (progn
-        (message "GOD MODE")
         (evil-mode 0)
         (god-local-mode))
       (progn
-        (message "EVIL MODE")
         (evil-mode)
         (god-local-mode 0))))
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; settings
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
   (setq-default evil-shift-width my/tab-offset)
   (setq-default evil-auto-indent nil)
   (setq evil-ex-visual-char-range t)
+
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; modeline
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; location
+  (setq evil-mode-line-format '(after . mode-line-modes))
+  ;; tag
+  (setq evil-emacs-state-tag " Evil -- Emacs ")
+  (setq evil-insert-state-tag " Evil -- Insert ")
+  (setq evil-mode-line-tag " Evil ")
+  (setq evil-motion-state-tag " Evil -- Motion ")
+  (setq evil-normal-state-tag " Evil ")
+  (setq evil-operator-state-tag " Evil -- Operator ")
+  (setq evil-replace-state-tag " Evil -- Replace ")
+  (setq evil-visual-state-tag " Evil -- Visual ")
+  ;; message
+  (setq evil-emacs-state-message "")
+  (setq evil-insert-state-message "")
+  (setq evil-motion-state-message "")
+  (setq evil-normal-state-message "")
+  (setq evil-operator-state-message "")
+  (setq evil-replace-state-message "")
+  (setq evil-visual-block-message "")
+  (setq evil-visual-char-message "")
+  (setq evil-visual-line-message "")
+  (setq evil-visual-state-state-message "")
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; keybinds
