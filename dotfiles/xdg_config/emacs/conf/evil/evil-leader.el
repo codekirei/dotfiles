@@ -3,7 +3,6 @@
 
   :ensure evil
   :ensure evil-commentary
-  :ensure anyins
 
   :config
   (global-evil-leader-mode)
@@ -30,11 +29,6 @@
   (evil-leader/set-key
     ;; evil-commentary
     "c" 'evil-commentary-line
-    ;; anyins
-    "ac" 'anyins-disable-mode
-    "am" 'anyins-record-current-position
-    "ap" 'anyins-yank
-    "as" 'anyins-insert-command
     ;; personal
     "<" 'my/fully-unindent
   )

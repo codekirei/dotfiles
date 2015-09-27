@@ -47,8 +47,5 @@
     (propertize " " 'face 'window-divider-last-pixel)))
 (setq linum-format 'my/linum-format-func)
 
-;; columns
-(setq column-number-mode t)
-
 ;; prompts
 (defalias 'yes-or-no-p 'y-or-n-p)

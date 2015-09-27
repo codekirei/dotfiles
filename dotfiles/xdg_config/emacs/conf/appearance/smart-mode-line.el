@@ -1,9 +1,8 @@
 (use-package smart-mode-line
-  ;:ensure smart-mode-line-powerline-theme
   :init
-    ;(setq sml/theme 'powerline)
     (setq sml/theme 'dark)
     (setq sml/no-confirm-load-theme t)
+    (setq column-number-mode t)
 
   :config
     ;; bootstrap sml
