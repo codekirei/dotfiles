@@ -1,7 +1,12 @@
 ;; js
 (add-hook 'js-mode-hook (lambda ()
   (push '("function" . ?ƒ) prettify-symbols-alist)
+  (prettify-symbols-mode)
 ))
 
-;; activate mode
-(add-hook 'buffer-list-update-hook 'prettify-symbols-mode)
+;; org
+(add-hook 'org-mode-hook (lambda ()
+  (push '("TODO" . ?†) prettify-symbols-alist)
+  (push '("DONE" . ?✓) prettify-symbols-alist)
+  (prettify-symbols-mode)
+))
