@@ -3,6 +3,9 @@
   (add-hook 'after-init-hook 'global-company-mode)
   (diminish 'company-mode)
 
+  ;; don't grab enter key
+  (unbind-key (kbd "RET") company-active-map)
+
   ;; colors
   (defvar my/company-color "green")
   (set-face-background 'company-preview-common "black")

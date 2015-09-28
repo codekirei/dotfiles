@@ -23,7 +23,10 @@
 (global-whitespace-mode)
 (setq whitespace-style '(face lines-tail tabs trailing empty))
 (diminish 'global-whitespace-mode)
+(set-face-background 'whitespace-empty "red")
+(set-face-background 'whitespace-line "red")
 (set-face-background 'whitespace-trailing "red")
+(set-face-foreground 'whitespace-line "black")
 
 ;; parens
 (show-paren-mode 1)

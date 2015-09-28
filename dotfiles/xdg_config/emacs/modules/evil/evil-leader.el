@@ -4,8 +4,9 @@
   :ensure evil
   :ensure evil-commentary
   :ensure expand-region
-  :ensure yasnippet
   :ensure flycheck
+  :ensure helm-dash
+  :ensure yasnippet
 
   :config
   (global-evil-leader-mode)
@@ -14,6 +15,8 @@
   (evil-leader/set-key
     ;; plugins
     "c" 'evil-commentary-line
+    "/" 'helm-dash
+    "d" 'helm-dash-at-point
     "e" 'er/expand-region
     "l" 'flycheck-list-errors
     ;; personal

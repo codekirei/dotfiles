@@ -1,6 +1,9 @@
-;; set absolute path to config dir
+;; read XDG dirs
 (defvar my/config-dir (concat (getenv "XDG_CONFIG_HOME") "/emacs/")
-  "Absolute path to emacs config dir.")
+  "XDG-compliant path to emacs config dir.")
+
+(defvar my/data-dir (getenv "XDG_DATA_HOME")
+  "XDG-compliant path to data dir.")
 
 ;; load globals
 (load (concat my/config-dir "globals.el"))
