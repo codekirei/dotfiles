@@ -6,30 +6,26 @@
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; deps
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  :ensure god-mode
+  :ensure company
   :ensure evil-commentary
   :ensure evil-surround
-  :ensure company
+  :ensure god-mode
+  :ensure s
 
   :config
+
+  ;; turn on modes
   (evil-mode 1)
   (evil-commentary-mode)
   (global-evil-surround-mode 1)
 
-  ;; diminish evil addons
+  ;; diminish modes
   (diminish 'undo-tree-mode)
   (diminish 'evil-commentary-mode)
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; functions
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-  ;; match indentation of previous line on newline
-  (evil-define-command my/indent-newline ()
-    (interactive)
-    (let ((saved-column (current-indentation)))
-      (newline)
-      (indent-to saved-column)))
 
   ;; TODO: figure out a nicer way to pass params to my/post-open-newline
   ;;       without spamming setq
@@ -77,17 +73,6 @@
     (remove-hook 'evil-normal-state-entry-hook 'my/post-open-newline)
   )
 
-  (defun my/evil-god-toggle ()
-    "Toggle between evil and god mode."
-    (interactive)
-    (if (bound-and-true-p evil-mode)
-      (progn
-        (evil-mode 0)
-        (god-local-mode))
-      (progn
-        (evil-mode)
-        (god-local-mode 0))))
-
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; settings
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -101,28 +86,33 @@
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; modeline
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
   ;; location
   (setq evil-mode-line-format '(after . mode-line-modes))
   ;; tag
-  (setq evil-emacs-state-tag " Evil -- Emacs ")
-  (setq evil-insert-state-tag " Evil -- Insert ")
-  (setq evil-mode-line-tag " Evil ")
-  (setq evil-motion-state-tag " Evil -- Motion ")
-  (setq evil-normal-state-tag " Evil ")
-  (setq evil-operator-state-tag " Evil -- Operator ")
-  (setq evil-replace-state-tag " Evil -- Replace ")
-  (setq evil-visual-state-tag " Evil -- Visual ")
+  (setq
+    evil-emacs-state-tag " Evil -- Emacs "
+    evil-insert-state-tag " Evil -- Insert "
+    evil-mode-line-tag " Evil "
+    evil-motion-state-tag " Evil -- Motion "
+    evil-normal-state-tag " Evil "
+    evil-operator-state-tag " Evil -- Operator "
+    evil-replace-state-tag " Evil -- Replace "
+    evil-visual-state-tag " Evil -- Visual "
+  )
   ;; message
-  (setq evil-emacs-state-message "")
-  (setq evil-insert-state-message "")
-  (setq evil-motion-state-message "")
-  (setq evil-normal-state-message "")
-  (setq evil-operator-state-message "")
-  (setq evil-replace-state-message "")
-  (setq evil-visual-block-message "")
-  (setq evil-visual-char-message "")
-  (setq evil-visual-line-message "")
-  (setq evil-visual-state-state-message "")
+  (setq
+    evil-emacs-state-message ""
+    evil-insert-state-message ""
+    evil-motion-state-message ""
+    evil-normal-state-message ""
+    evil-operator-state-message ""
+    evil-replace-state-message ""
+    evil-visual-block-message ""
+    evil-visual-char-message ""
+    evil-visual-line-message ""
+    evil-visual-state-state-message ""
+  )
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; keybinds
