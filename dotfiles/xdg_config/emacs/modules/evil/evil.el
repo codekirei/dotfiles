@@ -6,6 +6,7 @@
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; deps
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  :ensure avy
   :ensure company
   :ensure evil-commentary
   :ensure evil-surround
@@ -121,6 +122,10 @@
   ;; normal
   (my/define-keys evil-normal-state-map [
     ["C-u" evil-scroll-page-up]
+    ["C-j" avy-goto-line]
+    ["C-k" avy-goto-line]
+    ["C-f" avy-goto-char]
+    ["C-@" avy-goto-char-2]
     ["j" evil-next-visual-line]
     ["k" evil-previous-visual-line]
     ["S" evil-substitute]
