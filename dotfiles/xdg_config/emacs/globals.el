@@ -1,6 +1,9 @@
 ;; vars
 (defvar my/tab-offset 2 "Number of spaces that equal one tab width")
-(defvar my/config-dir "config" "Dir of config files inside user-emacs-directory")
+(defvar my/config-dir "config"
+  "Dir of config files inside user-emacs-directory")
+(defvar my/data-dir (getenv "XDG_DATA_HOME")
+  "XDG-compliant path to data dir.")
 
 ;; funcs
 (defun my/evil-god-toggle ()

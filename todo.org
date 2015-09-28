@@ -24,6 +24,7 @@
 disables linums
 centers text on page
 
+** TODO check out project-explorer
 ** TODO figure out how to change the color of glyphs in the display table (e.g. truncation)
 ** TODO show linums even if scrolled far to the right when there is truncation
 ** TODO an indent guide that doesn't choke all the time or eat linums
