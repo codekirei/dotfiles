@@ -5,7 +5,9 @@
   :ensure evil-commentary
   :ensure expand-region
   :ensure flycheck
+  :ensure helm-ag
   :ensure helm-dash
+  :ensure helm-swoop
   :ensure yasnippet
 
   :config
@@ -19,6 +21,9 @@
     "d" 'helm-dash-at-point
     "e" 'er/expand-region
     "l" 'flycheck-list-errors
+    "sa" 'helm-ag-project-root
+    "ss" 'helm-swoop
+    "sm" 'helm-multi-swoop-all
     ;; personal
     "<" 'my/fully-unindent
     "va" 'align-regex
