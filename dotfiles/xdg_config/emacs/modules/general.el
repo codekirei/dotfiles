@@ -23,6 +23,7 @@
 (global-whitespace-mode)
 (setq whitespace-style '(face lines-tail tabs trailing empty))
 (diminish 'global-whitespace-mode)
+(set-face-background 'whitespace-trailing "red")
 
 ;; parens
 (show-paren-mode 1)
@@ -31,6 +32,7 @@
 (electric-pair-mode 1)
 (set-face-background 'show-paren-match "green")
 (set-face-foreground 'show-paren-match "black")
+(set-face-background 'show-paren-mismatch "red")
 
 ;; visual region
 (set-face-background 'region "blue")

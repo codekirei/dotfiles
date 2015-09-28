@@ -5,19 +5,21 @@
   :ensure evil-commentary
   :ensure expand-region
   :ensure yasnippet
+  :ensure flycheck
 
   :config
   (global-evil-leader-mode)
   (evil-leader/set-leader ",")
 
   (evil-leader/set-key
-    ;; evil-commentary
+    ;; plugins
     "c" 'evil-commentary-line
-    ;; expand-region
     "e" 'er/expand-region
+    "l" 'flycheck-list-errors
     ;; personal
     "<" 'my/fully-unindent
     "va" 'align-regex
+    "p" 'check-parens
   )
 
   (evil-leader/set-key-for-mode 'org-mode

@@ -43,3 +43,4 @@ different dir. Thus the autosavs are preserved, but emacs won't nag you every
 time you open the file.
 
 ** TODO function to wrap selection at n characters (default 80)
+** TODO paredit-style slurp function
