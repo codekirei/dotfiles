@@ -18,6 +18,7 @@
 *** TODO git-timemachine
 *** TODO fullframe
 ** TODO customize helm/fiplr/ido colors
+** TODO centralize all color settings into one file
 ** TODO zen mode -- superset of writeroom mode
 
 disables linums

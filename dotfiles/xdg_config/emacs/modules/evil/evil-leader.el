@@ -9,6 +9,7 @@
   :ensure helm-ag
   :ensure helm-dash
   :ensure helm-swoop
+  :ensure ranger
   :ensure yasnippet
 
   :config
@@ -23,6 +24,7 @@
     "d" 'helm-dash-at-point
     "e" 'er/expand-region
     "l" 'flycheck-list-errors
+    "r" 'ranger
     "sa" 'helm-ag-project-root
     "sm" 'helm-multi-swoop-all
     "ss" 'helm-swoop
