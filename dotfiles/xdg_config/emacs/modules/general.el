@@ -30,6 +30,11 @@
 (setq show-paren-delay 0)
 (electric-pair-mode 1)
 (set-face-background 'show-paren-match "green")
+(set-face-foreground 'show-paren-match "black")
+
+;; visual region
+(set-face-background 'region "blue")
+(set-face-foreground 'region "black")
 
 ;; litter (backups, autosaves, lockfiles)
 (defconst my/temp-files-dir "~/temp/.emacs/" "Directory for backups and auto-saves")
