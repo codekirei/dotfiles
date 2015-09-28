@@ -17,7 +17,12 @@
 *** TODO tiny
 *** TODO git-timemachine
 *** TODO fullframe
-** TODO customize helm colors
+** TODO customize helm/fiplr/ido colors
+** TODO zen mode -- superset of writeroom mode
+
+disables linums
+centers text on page
+
 ** TODO figure out how to change the color of glyphs in the display table (e.g. truncation)
 ** TODO show linums even if scrolled far to the right when there is truncation
 ** TODO an indent guide that doesn't choke all the time or eat linums

@@ -4,6 +4,7 @@
   :ensure evil
   :ensure evil-commentary
   :ensure expand-region
+  :ensure fiplr
   :ensure flycheck
   :ensure helm-ag
   :ensure helm-dash
@@ -16,14 +17,16 @@
 
   (evil-leader/set-key
     ;; plugins
-    "c" 'evil-commentary-line
     "/" 'helm-dash
+    "b" 'ido-switch-buffer
+    "c" 'evil-commentary-line
     "d" 'helm-dash-at-point
     "e" 'er/expand-region
     "l" 'flycheck-list-errors
     "sa" 'helm-ag-project-root
-    "ss" 'helm-swoop
     "sm" 'helm-multi-swoop-all
+    "ss" 'helm-swoop
+    "t" 'fiplr-find-file
     ;; personal
     "<" 'my/fully-unindent
     "va" 'align-regex
