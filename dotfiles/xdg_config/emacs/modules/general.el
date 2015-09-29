@@ -5,6 +5,10 @@
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 
+;; scroll if close to margin
+(setq scroll-margin 10)
+(setq scroll-step 1)
+
 ;; truncate lines instead of wrapping
 (set-default 'truncate-lines t)
 (set-display-table-slot standard-display-table 'truncation ?˃)

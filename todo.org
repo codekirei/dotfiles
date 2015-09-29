@@ -19,6 +19,8 @@
 *** TODO fullframe
 ** TODO customize helm/fiplr/ido colors
 ** TODO centralize all color settings into one file
+** TODO figure out how to get prettify-symbols to work inside comments
+** TODO plugin to programmatically pass text to minibuffer prompt and execute
 ** TODO zen mode -- superset of writeroom mode
 
 disables linums

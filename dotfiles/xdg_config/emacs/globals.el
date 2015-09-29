@@ -6,6 +6,12 @@
   "XDG-compliant path to data dir.")
 
 ;; funcs
+(defun my/what-column ()
+  "Return column of pointer."
+  (interactive)
+  (string-to-number (car (last (split-string
+    (car (last (split-string (what-cursor-position)))) "=")))))
+
 (defun my/evil-god-toggle ()
   "Toggle between evil and god mode."
   (interactive)
@@ -21,7 +27,7 @@
   "Match previous indentation on newline."
   (interactive)
   (let ((saved-column (current-indentation))
-        (line (buffer-substring-no-properties
+        (line (buffer-substring
           (line-beginning-position)
           (line-end-position))))
     (if (= (length (s-trim line)) 0) (my/fully-unindent))
@@ -33,29 +39,29 @@
   (interactive "r")
   (call-process-region b e (read-string "Shell command: ") t t))
 
-(defun my/unindent ()
-  "Move line one tab width left"
+(defun my/fully-unindent-line ()
+  "Delete all whitespace preceding line."
   (interactive)
-  (save-excursion
-    (beginning-of-line)
-    (delete-char my/tab-offset)))
+  (goto-char (line-beginning-position))
+  (while (= (string-to-char "\s") (char-after (point)))
+      (delete-forward-char 1)))
 
 (defun my/fully-unindent ()
-  "Delete all whitespace preceding line or selection."
-  ;; clobbers "m" mark
+  "Delete all whitespace preceding line or region."
   (interactive)
-  (save-excursion
-    (if evil-visual-state-local-minor-mode nil
-      (evil-visual-line))
-    (evil-exit-visual-state)
-    (evil-goto-mark 062) ; >
-    (evil-last-non-blank)
-    (evil-set-marker 109) ; m
-    (evil-goto-mark 060) ; <
-    (evil-beginning-of-line)
-    (evil-visual-char)
-    (evil-goto-mark 109) ; m
-    (evil-ex-call-command "`<,`>" "delete-whitespace-rectangle" nil)))
+  (if (region-active-p)
+    ;; then
+    (funcall (lambda () (interactive)
+      (let ((b (region-beginning))
+            (e (region-end)))
+      (if evil-visual-state-minor-mode (evil-exit-visual-state))
+      (save-excursion
+        (goto-char (- e 1))
+        (while (>= (point) b)
+          (my/fully-unindent-line)
+          (previous-line))))))
+    ;; else
+    (my/fully-unindent-line)))
 
 (defun my/get-line-count ()
   "Return number of lines in current buffer"

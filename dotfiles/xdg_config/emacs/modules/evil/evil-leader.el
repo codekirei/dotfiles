@@ -23,6 +23,7 @@
     "c" 'evil-commentary-line
     "d" 'helm-dash-at-point
     "e" 'er/expand-region
+    "f" (lambda () (interactive) (helm-swoop :$query "fixme"))
     "l" 'flycheck-list-errors
     "r" 'ranger
     "sa" 'helm-ag-project-root
