@@ -24,7 +24,8 @@
     "d" 'helm-dash-at-point
     "e" 'er/expand-region
     "f" (lambda () (interactive) (helm-swoop :$query "fixme"))
-    "l" 'flycheck-list-errors
+    "ll" 'flycheck-list-errors
+    "lp" 'check-parens
     "r" 'ranger
     "sa" 'helm-ag-project-root
     "sm" 'helm-multi-swoop-all
@@ -33,7 +34,6 @@
     ;; personal
     "<" 'my/fully-unindent
     "va" 'align-regex
-    "p" 'check-parens
   )
 
   (evil-leader/set-key-for-mode 'org-mode
