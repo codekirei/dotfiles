@@ -30,7 +30,10 @@
         (line (buffer-substring
           (line-beginning-position)
           (line-end-position))))
-    (if (= (length (s-trim line)) 0) (my/fully-unindent))
+    (if (and (= (length (s-trim line)) 0)
+             (/= (line-beginning-position) (line-end-position)))
+      ;; then
+      (my/fully-unindent))
     (newline)
     (indent-to saved-column)))
 
@@ -43,7 +46,8 @@
   "Delete all whitespace preceding line."
   (interactive)
   (goto-char (line-beginning-position))
-  (while (= (string-to-char "\s") (char-after (point)))
+  (while (and (char-after (point))
+    (char-equal (string-to-char "\s") (char-after (point))))
       (delete-forward-char 1)))
 
 (defun my/fully-unindent ()
