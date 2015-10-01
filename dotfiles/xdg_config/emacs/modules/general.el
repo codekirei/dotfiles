@@ -1,6 +1,9 @@
 ;; turn off menu bar
 (menu-bar-mode -1)
 
+;; diminish server status
+(diminish 'server-buffer-clients)
+
 ;; utf-8
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)

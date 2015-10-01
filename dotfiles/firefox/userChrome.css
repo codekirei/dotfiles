@@ -1,0 +1,79 @@
+/* chrome://browser/content/browser.css */
+/* chrome://browser/skin/devtools/common.css */
+/* chrome://browser/skin/customizableui/panelUIOverlay.css */
+/* chrome://browser/skin/browser.css */
+/* chrome://browser/skin/browser-lightweightTheme.css */
+
+#star-button,
+#back-button,
+#forward-button,
+#reader-mode-button,
+#urlbar-reload-button,
+#urlbar > #identity-box,
+#urlbar-go-button,
+#urlbar-reload-button,
+#urlbar-stop-button,
+#PanelUI-menu-button,
+.tab-close-button,
+.findbar-closebutton,
+.findbar-highlight,
+.findbar-case-sensitive,
+.findbar-find-previous,
+.findbar-find-next,
+.urlbar-history-dropmarker {
+  display: none;
+}
+
+#nav-bar {
+  background: black !important;
+  padding-left: 13px !important;
+  padding-right: 7px !important;
+}
+
+#urlbar input {
+  border: 5px outset #FF00CC !important;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+  margin: 13px 0 !important;
+}
+
+#urlbar {
+  text-align: center !important;
+  margin-left: 5px !important;
+  border: none !important;
+  background: black !important;
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.findbar-textbox input::-moz-selection,
+#urlbar input::-moz-selection {
+  color: #FF00CC !important;
+  background: black !important;
+}
+
+#TabsToolbar {
+  text-align: center;
+  padding: 0 13px !important;
+}
+
+.tabbrowser-tab {
+  transition: all 500ms ease-out !important;
+  background: black !important;
+}
+
+.tabbrowser-tab[selected] { background: #FF00CC !important; }
+
+.findbar-container {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.findbar-textbox {
+  width: 100vw !important;
+  background: black !important;
+  color: white !important;
+  text-align: center !important;
+  border: 0px !important;
+  padding: 20px 0px !important;
+}
