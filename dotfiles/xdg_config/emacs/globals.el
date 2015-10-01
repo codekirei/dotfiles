@@ -23,17 +23,18 @@
       (evil-mode)
       (god-local-mode 0))))
 
+(defun my/trimmed-line-to-point ()
+  "Returns contents of current line to point with trimmed whitespace."
+  (interactive)
+  (s-trim (buffer-substring (line-beginning-position)
+                            (point))))
+
 (defun my/indent-newline ()
   "Match previous indentation on newline."
   (interactive)
-  (let ((saved-column (current-indentation))
-        (line (buffer-substring
-          (line-beginning-position)
-          (line-end-position))))
-    (if (and (= (length (s-trim line)) 0)
-             (/= (line-beginning-position) (line-end-position)))
-      ;; then
-      (my/fully-unindent))
+  (let ((saved-column (current-indentation)))
+    (if (= 0 (length (my/trimmed-line-to-point)))
+      (my/fully-unindent-line))
     (newline)
     (indent-to saved-column)))
 
