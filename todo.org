@@ -56,3 +56,8 @@ time you open the file.
 
 ** TODO function to wrap selection at n characters (default 80)
 ** TODO paredit-style slurp function
+* FIREFOX
+** ansible recipe
+** addons
+** about:config dump
+** bookmarks/lets
