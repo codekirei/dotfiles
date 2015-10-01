@@ -26,8 +26,8 @@
 (defun my/trimmed-line-to-point ()
   "Returns contents of current line to point with trimmed whitespace."
   (interactive)
-  (s-trim (buffer-substring (line-beginning-position)
-                            (point))))
+  (string-utils-trim-whitespace (buffer-substring (line-beginning-position)
+				(point))))
 
 (defun my/indent-newline ()
   "Match previous indentation on newline."

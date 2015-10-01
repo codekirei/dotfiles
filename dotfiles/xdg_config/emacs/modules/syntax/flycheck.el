@@ -1,7 +1,5 @@
 (use-package flycheck
   :config
-  (diminish 'flycheck-mode)
-
   ;; hide overlay
   (setq flycheck-highlighting-mode nil)
   (setq flycheck-indication-mode nil)

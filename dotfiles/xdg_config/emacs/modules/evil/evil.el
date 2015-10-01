@@ -20,10 +20,6 @@
   (evil-commentary-mode)
   (global-evil-surround-mode 1)
 
-  ;; diminish modes
-  (diminish 'undo-tree-mode)
-  (diminish 'evil-commentary-mode)
-
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; functions
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -1,7 +1,6 @@
 (use-package company
   :config
   (add-hook 'after-init-hook 'global-company-mode)
-  (diminish 'company-mode)
 
   ;; don't grab enter key
   (unbind-key (kbd "RET") company-active-map)

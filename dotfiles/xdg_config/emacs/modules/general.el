@@ -1,9 +1,6 @@
 ;; turn off menu bar
 (menu-bar-mode -1)
 
-;; diminish server status
-(diminish 'server-buffer-clients)
-
 ;; utf-8
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
@@ -29,7 +26,6 @@
 ;; whitespace
 (global-whitespace-mode)
 (setq whitespace-style '(face lines-tail tabs trailing empty))
-(diminish 'global-whitespace-mode)
 (set-face-background 'whitespace-empty "red")
 (set-face-background 'whitespace-line "red")
 (set-face-background 'whitespace-trailing "red")
