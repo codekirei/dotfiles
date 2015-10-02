@@ -51,7 +51,7 @@
   backup-directory-alist `((".*" . ,my/temp-files-dir))
   auto-save-file-name-transforms `((".*" ,my/temp-files-dir t))
 )
-;(setq create-lockfiles nil)
+(setq create-lockfiles nil)
 
 ;; indentation and tabs
 (setq electric-indent-mode nil)
