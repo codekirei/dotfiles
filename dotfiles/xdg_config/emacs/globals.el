@@ -12,6 +12,11 @@
   (string-to-number (car (last (split-string
     (car (last (split-string (what-cursor-position)))) "=")))))
 
+(defun my/bg-colorfix ()
+  "Override theme background color for terminal emacs."
+  (interactive)
+  (set-face-background 'default "unspecified-bg" (selected-frame)))
+
 (defun my/evil-god-toggle ()
   "Toggle between evil and god mode."
   (interactive)
@@ -26,8 +31,27 @@
 (defun my/trimmed-line-to-point ()
   "Returns contents of current line to point with trimmed whitespace."
   (interactive)
-  (string-utils-trim-whitespace (buffer-substring (line-beginning-position)
-				(point))))
+  (string-utils-trim-whitespace
+    (buffer-substring (line-beginning-position) (point))))
+
+(defun my/indent-block ()
+  "Indent code block."
+  (interactive)
+  (let ((saved-column (current-indentation)))
+    (my/indent-newline)
+    (my/indent-newline)
+    (previous-line)
+    (indent-to saved-column)
+    (tab-to-tab-stop)))
+
+(defun my/new-blank-line (&optional above)
+  "Add a blank line above or below current line."
+  (interactive)
+  (save-excursion
+    (if above
+      (evil-open-above 1)
+      (evil-open-below 1))
+    (evil-normal-state)))
 
 (defun my/indent-newline ()
   "Match previous indentation on newline."

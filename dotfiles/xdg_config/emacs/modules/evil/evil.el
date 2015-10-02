@@ -122,6 +122,8 @@
     ["C-k" avy-goto-line]
     ["C-f" avy-goto-char]
     ["C-@" avy-goto-char-2]
+    ["C-n" my/new-blank-line]
+    ["C-m" (lambda () (interactive) (my/new-blank-line 1))]
     ["j" evil-next-visual-line]
     ["k" evil-previous-visual-line]
     ["S" evil-substitute]
@@ -132,6 +134,7 @@
   ])
   ;; insert
   (my/define-keys evil-insert-state-map [
+    ["C-o" my/indent-block]
     ["C-e" yas-expand]
     ["C-j" my/open-below]
     ["TAB" tab-to-tab-stop]
