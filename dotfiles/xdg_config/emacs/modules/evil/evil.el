@@ -151,7 +151,6 @@
   (add-hook 'org-mode-hook (lambda ()
     (my/define-keys org-mode-map [
       ["TAB" org-cycle]
-      ["DEL" org-table-blank-field]
       ["C-t" org-cycle]
     ])))
   ;; god mode
