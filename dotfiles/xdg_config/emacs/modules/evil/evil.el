@@ -149,17 +149,11 @@
   ])
   ;; org
   (add-hook 'org-mode-hook (lambda ()
-    ;; normal
-    (my/define-keys evil-normal-state-map [
+    (my/define-keys org-mode-map [
       ["TAB" org-cycle]
-      ["t" org-cycle]
       ["DEL" org-table-blank-field]
-    ])
-    ;; insert
-    (my/define-keys evil-insert-state-map [
-      ["TAB" org-cycle]
-    ])
-    ))
+      ["C-t" org-cycle]
+    ])))
   ;; god mode
   (add-hook 'god-local-mode-hook (lambda ()
     (my/define-keys god-local-mode-map [
