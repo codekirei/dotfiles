@@ -1,6 +1,7 @@
 ;; js
 (add-hook 'js-mode-hook (lambda ()
   (push '("function" . ?ƒ) prettify-symbols-alist)
+  (push '("this." . ?_) prettify-symbols-alist)
   (prettify-symbols-mode)
 ))
 
