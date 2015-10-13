@@ -29,7 +29,7 @@
     "no-regex-spaces": 2,
     "no-unreachable": 2,
     "use-isnan": 2,
-    "valid-jsdoc": 2,
+    "valid-jsdoc": 1,
     "valid-typeof": 2,
     "no-unexpected-multiline": 2,
     // Best Practices
@@ -107,7 +107,7 @@
     "no-multiple-empty-lines": [2, {"max": 1}],
     "no-new-object": 2,
     "no-trailing-spaces": [2, {skipBlankLines: false}],
-    "no-underscore-dangle": 2,
+    "no-underscore-dangle": 0,
     "no-unneeded-ternary": 2,
     "object-curly-spacing": [2, "never"],
     "one-var": [2, "never"],
@@ -137,7 +137,7 @@
     "object-shorthand": 2,
     "prefer-arrow-callback": 2,
     "prefer-spread": 2,
-    "prefer-reflect": 2,
+    "prefer-reflect": 0, // not implemented yet in node
     "prefer-template": 2,
     "require-yield": 2,
     // Legacy

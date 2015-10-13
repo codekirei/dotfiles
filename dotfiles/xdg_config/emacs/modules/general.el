@@ -60,7 +60,7 @@
 (setq-default tab-stop-list (number-sequence my/tab-offset (* 2 my/tab-offset) my/tab-offset))
 
 ;; line numbers
-(global-linum-mode t)
+;; (global-linum-mode t)
 (add-hook 'linum-before-numbering-hook
   (lambda ()
     (setq-local linum-format-fmt

@@ -6,6 +6,7 @@
 - [ ] make list of other dotfiles to make eventually
 
 * EMACS
+** TODO linum mode that doesn't lag like crazy on large files with folds (org)
 ** TODO plugins to look into
 *** TODO web mode
 *** TODO magit
