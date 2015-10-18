@@ -25,6 +25,7 @@
     "e" 'er/expand-region
     "f" (lambda () (interactive) (helm-swoop :$query "fixme"))
     "ll" 'flycheck-list-errors
+    "lk" 'my/kill-flycheck-buffer
     "lp" 'check-parens
     "r" 'ranger
     "sa" 'helm-ag-project-root

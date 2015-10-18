@@ -8,6 +8,12 @@
   (add-hook 'js-mode-hook 'flycheck-mode)
   (setq flycheck-eslintrc (concat my/config-dir "modules/syntax/eslintrc"))
 
+  ;; function to kill flycheck buffer
+  (defun my/kill-flycheck-buffer ()
+    "Kill flycheck buffer"
+    (interactive)
+    (kill-buffer flycheck-error-list-buffer))
+
   ;; format
   (setq flycheck-error-list-format '[
     ("Line" 4 flycheck-error-list-entry-< :right-align t)
