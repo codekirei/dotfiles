@@ -34,7 +34,6 @@ concept:
 - yank all text from scratch buffer
 - put all text into relevant field of previous window (e.g. form/awesomebar)
 
-** TODO function to toggle flycheck buffer
 ** TODO plugin to programmatically pass text to minibuffer prompt and execute
 ** TODO zen mode -- superset of writeroom mode
 

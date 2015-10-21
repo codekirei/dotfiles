@@ -34,7 +34,7 @@
     "t" 'fiplr-find-file
     ;; personal
     "<" 'my/fully-unindent
-    "va" 'align-regex
+    "va" 'align-regexp
   )
 
   (evil-leader/set-key-for-mode 'org-mode

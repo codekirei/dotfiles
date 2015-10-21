@@ -14,6 +14,9 @@
     (interactive)
     (kill-buffer flycheck-error-list-buffer))
 
+  ;; change prefix so file-watchers aren't thrown off
+  (setq flycheck-temp-prefix ".flycheck-temp")
+
   ;; format
   (setq flycheck-error-list-format '[
     ("Line" 4 flycheck-error-list-entry-< :right-align t)
