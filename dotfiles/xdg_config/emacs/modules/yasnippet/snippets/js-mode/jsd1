@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+#key : jsd1
+# --
+/**
+ * @$1
+ * @desc $2
+ * @param {$3} $4 - $5
+ * @returns {$0}
+ */

@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+#key : jsd4
+# --
+/**
+ * @$1
+ * @desc $2
+ * @param {$3} $4 - $5
+ * @param {$6} $7 - $8
+ * @param {$9} $10 - $11
+ * @param {$12} $13 - $14
+ * @returns {$0}
+ */
