@@ -112,7 +112,7 @@
     "one-var": [2, "never"],
     "operator-assignment": [2, "always"],
     "padded-blocks": [2, "never"],
-    "quote-props": [2, "always"],
+    "quote-props": [2, "as-needed", {"unnecessary": false}],
     "quotes": [2, "single"],
     "semi": [2, "never"],
     "space-after-keywords": [2, "always"],
