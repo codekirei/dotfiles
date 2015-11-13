@@ -9,7 +9,8 @@
   "env": {
     "es6": true,
     "mocha": true,
-    "node": true
+    "node": true,
+    "browser": true
   },
   "rules": {
     // Possible Errors
