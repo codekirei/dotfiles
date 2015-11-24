@@ -35,6 +35,7 @@
     ;; personal
     "<" 'my/fully-unindent
     "va" 'align-regexp
+    "w" 'toggle-truncate-lines
   )
 
   (evil-leader/set-key-for-mode 'org-mode
