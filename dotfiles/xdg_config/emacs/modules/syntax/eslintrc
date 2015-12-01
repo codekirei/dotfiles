@@ -93,7 +93,7 @@
     "comma-style": [2, "last", {exceptions: {ObjectExpression: true}}],
     "computed-property-spacing": [2, "never"],
     "eol-last": 2,
-    "func-style": [2, "declaration"],
+    "func-style": [2, "declaration", {"allowArrowFunctions": true}],
     "indent": [2, 2, {"SwitchCase": 1}],
     "lines-around-comment": [0],
     "linebreak-style": [2, "unix"],
