@@ -16,7 +16,7 @@
   "rules": {
     // Possible Errors
     "comma-dangle": [2, "never"],
-    "no-cond-assign": [2, "except-parens"],
+    "no-cond-assign": [1, "except-parens"],
     "no-dupe-args": 2,
     "no-dupe-keys": 2,
     "no-duplicate-case": 2,
@@ -68,7 +68,7 @@
     "no-warning-comments": [1, { "terms": ["fixme"], "location": "anywhere" }],
     "no-with": 2,
     "wrap-iife": [2, "inside"],
-    "yoda": [2, "never", { "exceptRange": true}],
+    "yoda": [1, "never", { "exceptRange": true}],
     // Variables
     "no-delete-var": 2,
     "no-label-var": 2,
