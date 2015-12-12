@@ -2,7 +2,6 @@
 #key : jsd
 # --
 /**
- * @$1
- * @desc $2
- * @returns {$0}
+  $1
+  @returns {$0}
  */
