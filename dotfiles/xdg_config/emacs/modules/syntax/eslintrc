@@ -111,7 +111,7 @@
     "no-underscore-dangle": 0,
     "no-unneeded-ternary": 2,
     "object-curly-spacing": 0,
-    "one-var": [2, "never"],
+    "one-var": [2, {"uninitialized": "always", "initialized": "never"}],
     "operator-assignment": [2, "always"],
     "padded-blocks": [2, "never"],
     "quote-props": [2, "as-needed", {"unnecessary": false}],
