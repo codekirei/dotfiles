@@ -35,7 +35,7 @@
     "valid-typeof": 2,
     "no-unexpected-multiline": 2,
     // Best Practices
-    "curly": [2, "multi-line"],
+    "curly": [2, "multi"],
     "dot-location": [2, "property"],
     "eqeqeq": [2, "smart"],
     "no-caller": 2,
@@ -113,7 +113,7 @@
     "object-curly-spacing": 0,
     "one-var": [2, {"uninitialized": "always", "initialized": "never"}],
     "operator-assignment": [2, "always"],
-    "padded-blocks": [2, "never"],
+    "padded-blocks": [0, "never"],
     "quote-props": [2, "as-needed", {"unnecessary": false}],
     "quotes": [2, "single"],
     "semi": [2, "never"],
@@ -139,7 +139,7 @@
     "prefer-arrow-callback": 2,
     "prefer-spread": 2,
     "prefer-reflect": 0, // not implemented yet in node
-    "prefer-template": 2,
+    "prefer-template": 1,
     "require-yield": 2,
     // Legacy
     "max-depth": [2, 3],
