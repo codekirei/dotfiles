@@ -19,6 +19,13 @@
             state=link
       with_items: "{{ xdg_dotfiles.stdout_lines }}"
 
+    # symlink init.vim
+    - file: path="{{ ansible_env.XDG_CONFIG_HOME }}/nvim"
+            state=directory
+    - file: path="{{ ansible_env.XDG_CONFIG_HOME }}/nvim/init.vim"
+            state=link
+            src="{{ playbook_dir }}/dotfiles/nvim/init.vim"
+
     # symlink emacs init.el that reads config in XDG_CONFIG_HOME
     - file: path=~/.emacs.d/init.el
             src="{{ playbook_dir }}/dotfiles/emacs/init.el"
