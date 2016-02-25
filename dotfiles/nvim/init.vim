@@ -1,5 +1,5 @@
-set nocompatible
 filetype off
+set showcmd
 
 " PLUGINS {{{1
 call plug#begin()
@@ -13,6 +13,18 @@ call plug#begin()
 " Plug 'Shougo/neoyank.vim'
 " Plug 'justinmk/vim-sneak'
 " Plug 'chrisbra/Colorizer'
+
+"--------"
+" Colors "
+"--------"
+Plug 'atelierbram/vim-colors_duotones'
+Plug 'lilydjwg/colorizer'
+
+"-----------"
+" Languages "
+"-----------"
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 
 Plug 'tpope/vim-dispatch'
 Plug 'wincent/ferret'
@@ -33,9 +45,17 @@ call plug#end()
 " scroll when within 8 lines of edge
 set scrolloff=8
 
+" WHITESPACE {{{1
+
+set expandtab
+set softtabstop=2
+set shiftwidth=2
+set nowrap
+
 " KEYS {{{1
 let mapleader = " "
-nnoremap <C-p> :FZF<CR>
+nnoremap <C-t> :FZF<CR>
+nnoremap gx :silent !xdg-open &>/dev/null <C-R>=escape("<C-R><C-F>","#?&;\|%")<CR><CR>:<C-c>
 
 " reload things
 " reload vim
@@ -46,8 +66,10 @@ nnoremap <leader>rp :PlugUpdate<CR>
 " clear all the things
 nnoremap <leader>c :noh<CR>
 
+" exit things
 inoremap kj <ESC>
 vnoremap kj <ESC>
+cnoremap kj <C-e><C-u><C-c>
 
 nnoremap <C-n> O<Esc>j
 nnoremap <C-m> o<Esc>k
@@ -59,17 +81,21 @@ nnoremap n nzz
 nnoremap N Nzz
 nnoremap Y y$
 
+" FOLDS {{{1
 set foldmethod=marker
 
-" COLOR {{{1
+" COLORS {{{1
 syntax on
-colorscheme delek
+set background=dark
+color duotone-darkmeadow
 
 highlight UnwantedWhitespace ctermbg=1
 match UnwantedWhitespace /\s\+$\|\n\%$/
 
+" overrides
 highlight Search ctermbg=8
 highlight Folded ctermbg=0 ctermfg=1
+highlight Normal ctermbg=0
 
 " don't automatically continue comments on newline
 autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
