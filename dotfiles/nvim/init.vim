@@ -23,10 +23,12 @@ Plug 'lilydjwg/colorizer'
 "-----------"
 " Languages "
 "-----------"
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
+Plug 'sheerun/vim-polyglot'
+" Plug 'pangloss/vim-javascript'
+" Plug 'mxw/vim-jsx'
 
 Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-surround'
 Plug 'wincent/ferret'
 Plug 'tomtom/tcomment_vim'
 Plug 'coderifous/textobj-word-column.vim'
@@ -83,6 +85,13 @@ nnoremap Y y$
 
 " FOLDS {{{1
 set foldmethod=marker
+
+" SYNTASTIC {{{1
+"" JavaScript {{{2
+let g:syntastic_javascript_checkers = ['eslint']
+let g:eslint_conf = "-c $XDG_CONFIG_HOME/eslint/eslint.json"
+let g:eslint_cache = "--cache --cache-location $XDG_CACHE_HOME/eslint/"
+let g:syntastic_javascript_eslint_args = eslint_conf . ' ' . eslint_cache
 
 " COLORS {{{1
 syntax on
