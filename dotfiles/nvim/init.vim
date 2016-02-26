@@ -35,10 +35,11 @@ Plug 'tpope/vim-abolish'
 Plug 'ivyl/vim-bling'
 Plug 'scrooloose/syntastic'
 Plug 'itchyny/lightline.vim'
-Plug 'mizuchi/vim-ranger'
 Plug 'junegunn/fzf', {'dir': '$XDG_CACHE_HOME/fzf', 'do': './install --all'}
 Plug 'Raimondi/delimitMate'
 Plug 'atimholt/spiffy_foldtext'
+Plug 'jeetsukumaran/vim-buffergator'
+Plug 'tpope/vim-vinegar'
 
 call plug#end()
 
@@ -46,6 +47,12 @@ call plug#end()
 set scrolloff=8
 
 " FUNCTIONS {{{1
+
+" AUTOCOMMANDS {{{1
+augroup reload_vimrc
+  autocmd!
+  autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END
 
 " WHITESPACE {{{1
 set expandtab
@@ -92,6 +99,7 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:eslint_conf = "-c $XDG_CONFIG_HOME/eslint/eslint.json"
 let g:eslint_cache = "--cache --cache-location $XDG_CACHE_HOME/eslint/"
 let g:syntastic_javascript_eslint_args = eslint_conf . ' ' . eslint_cache
+
 
 " COLORS {{{1
 syntax on
