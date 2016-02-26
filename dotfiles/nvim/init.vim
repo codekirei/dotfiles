@@ -24,8 +24,6 @@ Plug 'lilydjwg/colorizer'
 " Languages "
 "-----------"
 Plug 'sheerun/vim-polyglot'
-" Plug 'pangloss/vim-javascript'
-" Plug 'mxw/vim-jsx'
 
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-surround'
@@ -47,8 +45,9 @@ call plug#end()
 " scroll when within 8 lines of edge
 set scrolloff=8
 
-" WHITESPACE {{{1
+" FUNCTIONS {{{1
 
+" WHITESPACE {{{1
 set expandtab
 set softtabstop=2
 set shiftwidth=2
@@ -57,7 +56,8 @@ set nowrap
 " KEYS {{{1
 let mapleader = " "
 nnoremap <C-t> :FZF<CR>
-nnoremap gx :silent !xdg-open &>/dev/null <C-R>=escape("<C-R><C-F>","#?&;\|%")<CR><CR>:<C-c>
+" nnoremap gx :silent !xdg-open &>/dev/null <C-R>=escape("<C-R><C-F>","#?&;\|%")<CR><CR>:<C-c>
+vnoremap <leader>w :'<,'>:w !xargs chromium &>/dev/null<CR>
 
 " reload things
 " reload vim
