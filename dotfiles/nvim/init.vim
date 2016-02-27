@@ -24,6 +24,7 @@ Plug 'atelierbram/vim-colors_duotones'
 
 " LANGUAGES {{{2
 Plug 'sheerun/vim-polyglot'
+Plug 'leafo/moonscript-vim'
 
 " OTHER {{{2
 Plug 'tpope/vim-dispatch'
