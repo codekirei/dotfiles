@@ -1,10 +1,14 @@
 filetype off
 set showcmd
 
+" scroll when within 8 lines of edge
+set scrolloff=8
+
 " PLUGINS {{{1
 call plug#begin()
 
 " Plug 'Shougo/vimproc.vim', {'do': 'make'}
+" Plug 'Shougo/vimshell.vim'
 " Plug 'Shougo/unite.vim'
 " Plug 'Shougo/neomru.vim'
 " Plug 'Shougo/unite-outline'
@@ -14,17 +18,14 @@ call plug#begin()
 " Plug 'justinmk/vim-sneak'
 " Plug 'chrisbra/Colorizer'
 
-"--------"
-" Colors "
-"--------"
+" COLORS {{{2
 Plug 'atelierbram/vim-colors_duotones'
-Plug 'lilydjwg/colorizer'
+" Plug 'lilydjwg/colorizer' -- super cool but causes weird flickering in insert mode =/
 
-"-----------"
-" Languages "
-"-----------"
+" LANGUAGES {{{2
 Plug 'sheerun/vim-polyglot'
 
+" OTHER {{{2
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-surround'
 Plug 'wincent/ferret'
@@ -33,26 +34,17 @@ Plug 'coderifous/textobj-word-column.vim'
 Plug 'edsono/vim-matchit'
 Plug 'tpope/vim-abolish'
 Plug 'ivyl/vim-bling'
-Plug 'scrooloose/syntastic'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', {'dir': '$XDG_CACHE_HOME/fzf', 'do': './install --all'}
 Plug 'Raimondi/delimitMate'
 Plug 'atimholt/spiffy_foldtext'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-rsi'
+Plug 'scrooloose/syntastic'
 
+" END PLUGINS {{{1
 call plug#end()
-
-" scroll when within 8 lines of edge
-set scrolloff=8
-
-" FUNCTIONS {{{1
-
-" AUTOCOMMANDS {{{1
-augroup reload_vimrc
-  autocmd!
-  autocmd BufWritePost $MYVIMRC source $MYVIMRC
-augroup END
 
 " WHITESPACE {{{1
 set expandtab
@@ -73,7 +65,7 @@ nnoremap <leader>rv :source $XDG_CONFIG_HOME/nvim/init.vim<CR>
 nnoremap <leader>rp :PlugUpdate<CR>
 
 " clear all the things
-nnoremap <leader>c :noh<CR>
+nnoremap <leader>c :noh<CR>:<C-c>
 
 " exit things
 inoremap kj <ESC>
@@ -94,12 +86,11 @@ nnoremap Y y$
 set foldmethod=marker
 
 " SYNTASTIC {{{1
-"" JavaScript {{{2
+" JavaScript {{{2
 let g:syntastic_javascript_checkers = ['eslint']
 let g:eslint_conf = "-c $XDG_CONFIG_HOME/eslint/eslint.json"
 let g:eslint_cache = "--cache --cache-location $XDG_CACHE_HOME/eslint/"
 let g:syntastic_javascript_eslint_args = eslint_conf . ' ' . eslint_cache
-
 
 " COLORS {{{1
 syntax on
