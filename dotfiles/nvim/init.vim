@@ -89,19 +89,17 @@ cnoremap kj <C-e><C-u><C-c>
 nnoremap n nzz
 nnoremap N Nzz
 
-" increment shiftwidth
-function! Increment_shiftwidth()
-  set shiftwidth+=1
+" adjust shiftwidth
+function! Adjust_shiftwidth(dir)
+  if a:dir == 'up'
+    set shiftwidth +=1
+  elseif a:dir == 'down'
+    set shiftwidth -=1
+  endif
   echo 'shiftwidth =' &shiftwidth
 endfunction
-nnoremap <leader>> :call Increment_shiftwidth()<CR>
-
-" decrement shiftwidth
-function! Decrement_shiftwidth()
-  set shiftwidth-=1
-  echo 'shiftwidth =' &shiftwidth
-endfunction
-nnoremap <leader>< :call Decrement_shiftwidth()<CR>
+nnoremap <leader>> :call Adjust_shiftwidth('up')<CR>
+nnoremap <leader>< :call Adjust_shiftwidth('down')<CR>
 
 " other
 nnoremap <C-n> O<Esc>j
