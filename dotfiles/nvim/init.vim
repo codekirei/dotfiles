@@ -28,7 +28,8 @@ Plug 'atelierbram/vim-colors_duotones'
 " LANGUAGES
 "-------------------------------------------------------------------------------
 Plug 'sheerun/vim-polyglot'
-Plug 'leafo/moonscript-vim'
+Plug 'tbastos/vim-lua'
+" Plug 'leafo/moonscript-vim'
 
 " OTHER
 "-------------------------------------------------------------------------------
