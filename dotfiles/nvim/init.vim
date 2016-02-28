@@ -4,7 +4,9 @@ set showcmd
 " scroll when within 8 lines of edge
 set scrolloff=8
 
-" PLUGINS {{{1
+"-------------------------------------------------------------------------------
+" PLUGINS
+"-------------------------------------------------------------------------------
 call plug#begin()
 
 " Plug 'Shougo/vimproc.vim', {'do': 'make'}
@@ -18,15 +20,18 @@ call plug#begin()
 " Plug 'justinmk/vim-sneak'
 " Plug 'chrisbra/Colorizer'
 
-" COLORS {{{2
+" COLORS
+"-------------------------------------------------------------------------------
 Plug 'atelierbram/vim-colors_duotones'
 " Plug 'lilydjwg/colorizer' -- super cool but causes weird flickering in insert mode =/
 
-" LANGUAGES {{{2
+" LANGUAGES
+"-------------------------------------------------------------------------------
 Plug 'sheerun/vim-polyglot'
 Plug 'leafo/moonscript-vim'
 
-" OTHER {{{2
+" OTHER
+"-------------------------------------------------------------------------------
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-surround'
 Plug 'wincent/ferret'
@@ -43,17 +48,25 @@ Plug 'jeetsukumaran/vim-buffergator'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-rsi'
 Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-endwise'
+Plug 'junegunn/vim-easy-align'
 
-" END PLUGINS {{{1
+" END PLUGINS
+"-------------------------------------------------------------------------------
 call plug#end()
 
-" WHITESPACE {{{1
+"-------------------------------------------------------------------------------
+" SPACING
+"-------------------------------------------------------------------------------
 set expandtab
 set softtabstop=2
 set shiftwidth=2
 set nowrap
+set nofoldenable
 
-" KEYS {{{1
+"-------------------------------------------------------------------------------
+" KEYS
+"-------------------------------------------------------------------------------
 let mapleader = " "
 nnoremap <C-t> :FZF<CR>
 " nnoremap gx :silent !xdg-open &>/dev/null <C-R>=escape("<C-R><C-F>","#?&;\|%")<CR><CR>:<C-c>
@@ -70,30 +83,51 @@ nnoremap <leader>c :noh<CR>:<C-c>
 
 " exit things
 inoremap kj <ESC>
-vnoremap kj <ESC>
 cnoremap kj <C-e><C-u><C-c>
-
-nnoremap <C-n> O<Esc>j
-nnoremap <C-m> o<Esc>k
-nnoremap s <C-w>
-map Q <Nop>
 
 " automatically recenter
 nnoremap n nzz
 nnoremap N Nzz
+
+" increment shiftwidth
+function! Increment_shiftwidth()
+  set shiftwidth+=1
+  echo 'shiftwidth =' &shiftwidth
+endfunction
+nnoremap <leader>> :call Increment_shiftwidth()<CR>
+
+" decrement shiftwidth
+function! Decrement_shiftwidth()
+  set shiftwidth-=1
+  echo 'shiftwidth =' &shiftwidth
+endfunction
+nnoremap <leader>< :call Decrement_shiftwidth()<CR>
+
+" other
+nnoremap <C-n> O<Esc>j
+nnoremap <C-m> o<Esc>k
+nnoremap s <C-w>
+map Q <Nop>
 nnoremap Y y$
 
-" FOLDS {{{1
-set foldmethod=marker
+" PLUGINS
+"-------------------------------------------------------------------------------
+nmap ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
 
-" SYNTASTIC {{{1
-" JavaScript {{{2
+"-------------------------------------------------------------------------------
+" SYNTASTIC
+"-------------------------------------------------------------------------------
+
+" JavaScript
 let g:syntastic_javascript_checkers = ['eslint']
 let g:eslint_conf = "-c $XDG_CONFIG_HOME/eslint/eslint.json"
 let g:eslint_cache = "--cache --cache-location $XDG_CACHE_HOME/eslint/"
 let g:syntastic_javascript_eslint_args = eslint_conf . ' ' . eslint_cache
 
-" COLORS {{{1
+"-------------------------------------------------------------------------------
+" COLORS
+"-------------------------------------------------------------------------------
 syntax on
 set background=dark
 color duotone-darkmeadow
