@@ -19,6 +19,7 @@ call plug#begin()
 " Plug 'Shougo/neoyank.vim'
 " Plug 'justinmk/vim-sneak'
 " Plug 'chrisbra/Colorizer'
+" Plug 'tpope/vim-endwise' " doesn't work with non-standard syntax highlighting =/
 
 " COLORS
 "-------------------------------------------------------------------------------
@@ -44,13 +45,11 @@ Plug 'ivyl/vim-bling'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', {'dir': '$XDG_CACHE_HOME/fzf', 'do': './install --all'}
 Plug 'Raimondi/delimitMate'
-Plug 'atimholt/spiffy_foldtext'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-rsi'
-Plug 'scrooloose/syntastic'
-Plug 'tpope/vim-endwise'
 Plug 'junegunn/vim-easy-align'
+Plug 'benekastah/neomake'
 
 " END PLUGINS
 "-------------------------------------------------------------------------------
@@ -115,14 +114,30 @@ nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
 
 "-------------------------------------------------------------------------------
-" SYNTASTIC
+" NEOMAKE
 "-------------------------------------------------------------------------------
+autocmd! BufWritePost * Neomake
 
 " JavaScript
-let g:syntastic_javascript_checkers = ['eslint']
-let g:eslint_conf = "-c $XDG_CONFIG_HOME/eslint/eslint.json"
-let g:eslint_cache = "--cache --cache-location $XDG_CACHE_HOME/eslint/"
-let g:syntastic_javascript_eslint_args = eslint_conf . ' ' . eslint_cache
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_jsx_enabled_makers = ['eslint']
+let g:my_neomake_eslint = {
+  \ 'args': [
+    \ '--format', 'compact',
+    \ '--config', '$XDG_CONFIG_HOME/eslint/eslint.json',
+    \ '--cache',
+    \ '--cache-location', '$XDG_CACHE_HOME/eslint/'
+    \ ],
+  \ 'errorformat': '%f: line %l\, col %c\, %m'
+  \ }
+let g:neomake_javascript_eslint_maker = my_neomake_eslint
+let g:neomake_jsx_eslint_maker = my_neomake_eslint
+
+"-------------------------------------------------------------------------------
+" SEARCH
+"-------------------------------------------------------------------------------
+set ignorecase
+set smartcase
 
 "-------------------------------------------------------------------------------
 " COLORS
