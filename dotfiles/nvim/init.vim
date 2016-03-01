@@ -116,7 +116,11 @@ xmap ga <Plug>(EasyAlign)
 "-------------------------------------------------------------------------------
 " NEOMAKE
 "-------------------------------------------------------------------------------
+" Global
+" let g:neomake_verbose = 3 " debug flag
 autocmd! BufWritePost * Neomake
+let g:neomake_error_sign = { 'text': '!>', 'texthl': 'Error' }
+let g:neomake_warning_sign = { 'text': '?>', 'texthl': 'Error' }
 
 " JavaScript
 let g:neomake_javascript_enabled_makers = ['eslint']
@@ -135,12 +139,15 @@ let g:neomake_jsx_eslint_maker = my_neomake_eslint
 
 " CSS
 let g:neomake_css_enabled_makers = ['stylelint']
-let g:neomake_css_stylelint_maker = {
+let g:neomake_scss_enabled_makers = ['stylelint']
+let g:my_neomake_stylelint = {
   \ 'args': [
     \ '--config', '$XDG_CONFIG_HOME/stylelint/stylelint.config.js'
   \ ],
   \ 'errorformat': '%+P%f, %W%l:%c%*\s%m, %-Q'
   \ }
+let g:neomake_css_stylelint_maker = my_neomake_stylelint
+let g:neomake_scss_stylelint_maker = my_neomake_stylelint
 
 "-------------------------------------------------------------------------------
 " SEARCH
