@@ -133,6 +133,15 @@ let g:my_neomake_eslint = {
 let g:neomake_javascript_eslint_maker = my_neomake_eslint
 let g:neomake_jsx_eslint_maker = my_neomake_eslint
 
+" CSS
+let g:neomake_css_enabled_makers = ['stylelint']
+let g:neomake_css_stylelint_maker = {
+  \ 'args': [
+    \ '--config', '$XDG_CONFIG_HOME/stylelint/stylelint.config.js'
+  \ ],
+  \ 'errorformat': '%+P%f, %W%l:%c%*\s%m, %-Q'
+  \ }
+
 "-------------------------------------------------------------------------------
 " SEARCH
 "-------------------------------------------------------------------------------
