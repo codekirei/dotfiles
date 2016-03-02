@@ -30,7 +30,7 @@ Plug 'atelierbram/vim-colors_duotones'
 "-------------------------------------------------------------------------------
 Plug 'sheerun/vim-polyglot'
 Plug 'tbastos/vim-lua'
-" Plug 'leafo/moonscript-vim'
+Plug 'mattn/emmet-vim'
 
 " OTHER
 "-------------------------------------------------------------------------------
