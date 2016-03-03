@@ -31,6 +31,7 @@ Plug 'atelierbram/vim-colors_duotones'
 Plug 'sheerun/vim-polyglot'
 Plug 'tbastos/vim-lua'
 Plug 'mattn/emmet-vim'
+Plug 'larsbs/vim-xmll'
 
 " OTHER
 "-------------------------------------------------------------------------------
