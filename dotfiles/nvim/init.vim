@@ -166,6 +166,8 @@ color duotone-darkmeadow
 set list
 set listchars=tab:>-,trail:_
 
+au BufRead,BufNewFile *.css set ft=scss
+
 highlight SpecialKey ctermfg=red guifg=red
 highlight Normal ctermbg=0
 
