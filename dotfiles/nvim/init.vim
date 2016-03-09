@@ -163,12 +163,10 @@ syntax on
 set background=dark
 color duotone-darkmeadow
 
-highlight UnwantedWhitespace ctermbg=1
-match UnwantedWhitespace /\s\+$\|\n\%$/
+set list
+set listchars=tab:>-,trail:_
 
-" overrides
-highlight Search ctermbg=8
-highlight Folded ctermbg=0 ctermfg=1
+highlight SpecialKey ctermfg=red guifg=red
 highlight Normal ctermbg=0
 
 " don't automatically continue comments on newline
