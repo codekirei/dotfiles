@@ -134,7 +134,7 @@ let g:my_neomake_eslint = {
     \ '--cache-location', '$XDG_CACHE_HOME/eslint/'
     \ ],
   \ 'errorformat': '%f: line %l\, col %c\, %m'
-  \ }
+\ }
 let g:neomake_javascript_eslint_maker = my_neomake_eslint
 let g:neomake_jsx_eslint_maker = my_neomake_eslint
 
