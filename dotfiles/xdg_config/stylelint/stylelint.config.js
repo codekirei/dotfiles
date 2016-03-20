@@ -5,6 +5,6 @@ module.exports = {
     'lib', 'node_modules', 'stylelint-config-standard'
   ),
   rules: {
-    'at-rule-empty-line-before': ['always', { except: ['all-nested'] }],
+    'at-rule-empty-line-before': ['always', { except: ['all-nested', 'blockless-group'] }],
   },
 }
