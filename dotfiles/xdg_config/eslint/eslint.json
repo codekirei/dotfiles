@@ -4,6 +4,7 @@
     "mocha": true
   },
   "rules": {
-    "semi": [2, "never"]
+    "semi": [2, "never"],
+    "react/jsx-no-bind": [2, { "allowArrowFunctions": true }]
   }
 }
