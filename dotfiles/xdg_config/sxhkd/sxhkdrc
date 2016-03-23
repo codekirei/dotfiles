@@ -1,0 +1,113 @@
+############
+# sxhkdrc  #
+############
+
+# focus last node/desktop
+super + {_,shift + } Tab
+  bspc {node,desktop} -f last
+
+# focus specific desktop / send node to desktop
+super + {_,shift + }{1-9,0}
+  bspc {desktop -f,node -d} ^{1-9,10}
+
+# modify/reset window gap
+super + alt + {minus,equal}
+  bspc config -d focused window_gap $((`bspc config -d focused window_gap` {+,-} 5 ))
+super + alt + backslash
+  bspc config -d focused window_gap 30
+
+# rotate tree
+super + shift + grave
+  bspc node @/ -R 90
+
+# circulate nodes backward/forward inside tree
+super + {comma,period}
+  bspc node @/ -C {backward,forward}
+
+# focus desktop to the left/right
+super + bracket{left,right}
+  bspc desktop -f {prev,next}
+
+# equalize split ratios
+super + b
+  bspc node @/ -B
+
+# reset split ratios
+super + e
+  bspc node @/ -E
+
+# cycle desktop layout between monocle and tiled
+super + t
+  bspc desktop -l next
+
+# focus clicked nodes
+~button1
+  bspc pointer -g focus
+
+# close node
+super + Escape
+  bspc node -c
+
+# set node state to fullscreen
+super + f
+  bspc node --state ~fullscreen
+
+# lock node to prevent closing
+super + u
+  bspc node -g locked
+
+# focus/swap with adjacent node
+super + {_,shift + }{h,j,k,l}
+  bspc node -{f,s} {west,south,north,east}
+
+# swap with biggest node in desktop
+super + m
+  bspc node -s biggest
+
+# manually set/cancel split direction and ratio
+super + ctrl + {h,j,k,l,semicolon}
+  bspc node -p {west,south,north,east,cancel}
+super + ctrl + {1-9}
+  bspc node -o 0.{1-9}
+
+# grow/shrink node left/down/up/right
+super + alt + {_, shift + } h
+  bspc node {@west,@east} -r -120
+super + alt + {_, shift + } j
+  bspc node {@south,@north} -r +120
+super + alt + {_, shift + } k
+  bspc node  {@north,@south} -r -120
+super + alt + {_, shift + } l
+  bspc node  {@east,@west} -r +120
+
+#########
+# other #
+#########
+
+# kill X
+ctrl + alt + BackSpace
+  pkill "panel*"; bspc quit
+
+# launch terminal
+super + Return
+  term_same_dir
+
+# ??
+super + space
+  dmenu_run
+
+# reload sxhkd conf -- needs an alert
+super + shift + r
+  pkill -USR1 -x sxhkd
+
+# volume up/down/toggle mute
+super + {minus,equal}
+  amixer set Master 3%{-,+} && mpg123 ~/media/tunes/mp3/super-mario-kart-coin.mp3 & panel_volume > /tmp/panel-fifo
+
+# amixer set Master 3%{-,+} && mpg123 '~/media/tunes/mp3/super-mario-kart-coin.mp3' && panel_volume > /tmp/panel-fifo
+super + backslash
+        amixer set Master toggle && panel_volume > /tmp/panel-fifo && mpc toggle
+
+#launch programs
+super + w
+  chromium

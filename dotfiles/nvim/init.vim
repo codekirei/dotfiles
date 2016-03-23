@@ -119,9 +119,8 @@ xmap ga <Plug>(EasyAlign)
 "-------------------------------------------------------------------------------
 " Global
 " let g:neomake_verbose = 3 " debug flag
-autocmd! BufWritePost * Neomake
 let g:neomake_error_sign = { 'text': '!>', 'texthl': 'Error' }
-let g:neomake_warning_sign = { 'text': '?>', 'texthl': 'Error' }
+let g:neomake_warning_sign = { 'text': '?>', 'texthl': 'Warning' }
 
 " JavaScript
 let g:neomake_javascript_enabled_makers = ['eslint']
@@ -149,6 +148,8 @@ let g:my_neomake_stylelint = {
   \ }
 let g:neomake_css_stylelint_maker = my_neomake_stylelint
 let g:neomake_scss_stylelint_maker = my_neomake_stylelint
+
+autocmd! BufWritePost * Neomake
 
 "-------------------------------------------------------------------------------
 " SEARCH
