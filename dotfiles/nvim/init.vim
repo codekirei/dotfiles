@@ -117,45 +117,43 @@ xmap ga <Plug>(EasyAlign)
 "-------------------------------------------------------------------------------
 " NEOMAKE
 "-------------------------------------------------------------------------------
-" Global
 " let g:neomake_verbose = 3 " debug flag
 let g:neomake_error_sign = { 'text': '!>', 'texthl': 'Error' }
 let g:neomake_warning_sign = { 'text': '?>', 'texthl': 'Warning' }
 
-" JavaScript
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_jsx_enabled_makers = ['eslint']
-
-function! FindESLint()
-  let b:git_toplevel = systemlist('git rev-parse --show-toplevel')[0]
-  let b:eslint = b:git_toplevel . '/node_modules/.bin/eslint'
-  if executable(b:eslint)
-    let b:neomake_javascript_eslint_exe = b:eslint
-    let b:neomake_jsx_eslint_exe = b:eslint
-  endif
-endfunction
-
-let g:my_neomake_eslint = {
+"-------------------------------------------------------------------------------
+" NEOMAKE - ESLint
+"-------------------------------------------------------------------------------
+let g:my_neomake_eslint_maker = {
   \ 'args': [
     \ '--format', 'compact',
     \ '--cache',
     \ '--cache-location', '$XDG_CACHE_HOME/eslint/'
-    \ ],
+  \ ],
   \ 'errorformat': '%f: line %l\, col %c\, %m'
 \ }
-" let g:my_neomake_eslint = {
-"   \ 'args': [
-"     \ '--format', 'compact',
-"     \ '--config', '$XDG_CONFIG_HOME/eslint/eslint.json',
-"     \ '--cache',
-"     \ '--cache-location', '$XDG_CACHE_HOME/eslint/'
-"     \ ],
-"   \ 'errorformat': '%f: line %l\, col %c\, %m'
-" \ }
-let g:neomake_javascript_eslint_maker = g:my_neomake_eslint
-let g:neomake_jsx_eslint_maker = g:my_neomake_eslint
+let g:neomake_javascript_eslint_maker = g:my_neomake_eslint_maker
+let g:neomake_jsx_eslint_maker = g:my_neomake_eslint_maker
 
-" CSS
+function! SetupESLint()
+  if !exists("b:eslint_is_setup")
+    let b:git_toplevel = systemlist('git rev-parse --show-toplevel')[0]
+    let b:eslint = b:git_toplevel . '/node_modules/.bin/eslint'
+    if executable(b:eslint)
+      let b:neomake_javascript_enabled_makers = ['eslint']
+      let b:neomake_javascript_eslint_exe = b:eslint
+      let b:neomake_jsx_enabled_makers = ['eslint']
+      let b:neomake_jsx_eslint_exe = b:eslint
+    else
+      echomsg "ESLint not found"
+    endif
+    let b:eslint_is_setup = 1
+  endif
+endfunction
+
+"-------------------------------------------------------------------------------
+" NEOMAKE - stylelint
+"-------------------------------------------------------------------------------
 let g:neomake_css_enabled_makers = ['stylelint']
 let g:neomake_scss_enabled_makers = ['stylelint']
 let g:my_neomake_stylelint = {
@@ -167,18 +165,17 @@ let g:my_neomake_stylelint = {
 let g:neomake_css_stylelint_maker = g:my_neomake_stylelint
 let g:neomake_scss_stylelint_maker = g:my_neomake_stylelint
 
-
 "-------------------------------------------------------------------------------
 " AUTOCOMMANDS
 "-------------------------------------------------------------------------------
 if !exists("g:loaded_gold")
-  let loaded_gold = 1
+  let g:loaded_gold = 1
+
+  " establish local eslint for a js/jsx file
+  au BufRead,BufNewFile *.{jsx,js} :call SetupESLint()
 
   " call neomake on :w
   au BufWritePost * Neomake
-
-  " find local eslint exe for a js buffer
-  au BufEnter *.{jsx,js} :call FindESLint()
 
   " don't automatically continue comments on newline
   au BufNewFile,BufRead * setlocal formatoptions-=cro
