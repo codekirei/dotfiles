@@ -125,17 +125,35 @@ let g:neomake_warning_sign = { 'text': '?>', 'texthl': 'Warning' }
 " JavaScript
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_jsx_enabled_makers = ['eslint']
+
+function! FindESLint()
+  let b:git_toplevel = systemlist('git rev-parse --show-toplevel')[0]
+  let b:eslint = b:git_toplevel . '/node_modules/.bin/eslint'
+  if executable(b:eslint)
+    let b:neomake_javascript_eslint_exe = b:eslint
+    let b:neomake_jsx_eslint_exe = b:eslint
+  endif
+endfunction
+
 let g:my_neomake_eslint = {
   \ 'args': [
     \ '--format', 'compact',
-    \ '--config', '$XDG_CONFIG_HOME/eslint/eslint.json',
     \ '--cache',
     \ '--cache-location', '$XDG_CACHE_HOME/eslint/'
     \ ],
   \ 'errorformat': '%f: line %l\, col %c\, %m'
 \ }
-let g:neomake_javascript_eslint_maker = my_neomake_eslint
-let g:neomake_jsx_eslint_maker = my_neomake_eslint
+" let g:my_neomake_eslint = {
+"   \ 'args': [
+"     \ '--format', 'compact',
+"     \ '--config', '$XDG_CONFIG_HOME/eslint/eslint.json',
+"     \ '--cache',
+"     \ '--cache-location', '$XDG_CACHE_HOME/eslint/'
+"     \ ],
+"   \ 'errorformat': '%f: line %l\, col %c\, %m'
+" \ }
+let g:neomake_javascript_eslint_maker = g:my_neomake_eslint
+let g:neomake_jsx_eslint_maker = g:my_neomake_eslint
 
 " CSS
 let g:neomake_css_enabled_makers = ['stylelint']
@@ -146,10 +164,29 @@ let g:my_neomake_stylelint = {
   \ ],
   \ 'errorformat': '%+P%f, %W%l:%c%*\s%m, %-Q'
   \ }
-let g:neomake_css_stylelint_maker = my_neomake_stylelint
-let g:neomake_scss_stylelint_maker = my_neomake_stylelint
+let g:neomake_css_stylelint_maker = g:my_neomake_stylelint
+let g:neomake_scss_stylelint_maker = g:my_neomake_stylelint
 
-autocmd! BufWritePost * Neomake
+
+"-------------------------------------------------------------------------------
+" AUTOCOMMANDS
+"-------------------------------------------------------------------------------
+if !exists("g:loaded_gold")
+  let loaded_gold = 1
+
+  " call neomake on :w
+  au BufWritePost * Neomake
+
+  " find local eslint exe for a js buffer
+  au BufEnter *.{jsx,js} :call FindESLint()
+
+  " don't automatically continue comments on newline
+  au BufNewFile,BufRead * setlocal formatoptions-=cro
+
+  " improve postcss syntax highlighting by using scss ft
+  au BufRead,BufNewFile *.css set ft=scss
+
+endif
 
 "-------------------------------------------------------------------------------
 " SEARCH
@@ -167,10 +204,6 @@ color duotone-darkmeadow
 set list
 set listchars=tab:>-,trail:_
 
-au BufRead,BufNewFile *.css set ft=scss
 
 highlight SpecialKey ctermfg=red guifg=red
 highlight Normal ctermbg=0
-
-" don't automatically continue comments on newline
-autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
