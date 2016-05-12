@@ -1,7 +1,7 @@
 pcm.usb
 {
     type hw
-    card U0x46d0x8d7
+    card AK5370
 }
 
 pcm.!default
