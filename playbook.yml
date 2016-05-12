@@ -9,7 +9,7 @@
             state=directory
 
     # symlink dotfiles in HOME
-    - shell: "find {{ playbook_dir }}/dotfiles/home | tail -n -1"
+    - shell: "find {{ playbook_dir }}/dotfiles/home | tail -n +2"
       register: home_dotfiles
       changed_when: False
     - file: path="{{ ansible_env.HOME }}/{{ item | basename }}"
