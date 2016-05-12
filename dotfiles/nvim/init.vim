@@ -51,6 +51,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-rsi'
 Plug 'junegunn/vim-easy-align'
 Plug 'benekastah/neomake'
+Plug 'junegunn/goyo.vim'
 
 " END PLUGINS
 "-------------------------------------------------------------------------------
@@ -113,6 +114,7 @@ nnoremap Y y$
 "-------------------------------------------------------------------------------
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
+nnoremap <leader>G :Goyo<CR>
 
 "-------------------------------------------------------------------------------
 " NEOMAKE
@@ -200,7 +202,6 @@ color duotone-darkmeadow
 
 set list
 set listchars=tab:>-,trail:_
-
 
 highlight SpecialKey ctermfg=red guifg=red
 highlight Normal ctermbg=0

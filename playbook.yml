@@ -8,12 +8,19 @@
     - file: path="{{ ansible_env.XDG_CONFIG_HOME }}"
             state=directory
 
-    # grab xdg conf dotfiles (files and dirs)
+    # symlink dotfiles in HOME
+    - shell: "find {{ playbook_dir }}/dotfiles/home | tail -n -1"
+      register: home_dotfiles
+      changed_when: False
+    - file: path="{{ ansible_env.HOME }}/{{ item | basename }}"
+            src="{{ item }}"
+            state=link
+      with_items: "{{ home_dotfiles.stdout_lines }}"
+
+    # symlink dotfiles in XDG_CONFIG_HOME
     - shell: "ls -d -1 {{ playbook_dir }}/dotfiles/xdg_config/*"
       register: xdg_dotfiles
       changed_when: False
-
-    # symlink dotfiles in XDG_CONFIG_HOME
     - file: path="{{ ansible_env.XDG_CONFIG_HOME }}/{{ item | basename }}"
             src="{{ item }}"
             state=link
@@ -23,8 +30,8 @@
     - file: path="{{ ansible_env.XDG_CONFIG_HOME }}/nvim"
             state=directory
     - file: path="{{ ansible_env.XDG_CONFIG_HOME }}/nvim/init.vim"
-            state=link
             src="{{ playbook_dir }}/dotfiles/nvim/init.vim"
+            state=link
 
     # symlink emacs init.el that reads config in XDG_CONFIG_HOME
     - file: path=~/.emacs.d/init.el
