@@ -23,12 +23,14 @@ call plug#begin()
 
 " COLORS
 "-------------------------------------------------------------------------------
-Plug 'atelierbram/vim-colors_duotones'
+" Plug 'atelierbram/vim-colors_duotones'
+Plug 'chriskempson/base16-vim'
+Plug 'junegunn/rainbow_parentheses.vim'
 " Plug 'lilydjwg/colorizer' -- super cool but causes weird flickering in insert mode =/
 
 " LANGUAGES
 "-------------------------------------------------------------------------------
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 Plug 'tbastos/vim-lua'
 Plug 'mattn/emmet-vim'
 Plug 'larsbs/vim-xmll'
@@ -182,6 +184,9 @@ if !exists("g:loaded_gold")
   " don't automatically continue comments on newline
   au BufNewFile,BufRead * setlocal formatoptions-=cro
 
+  " activate rainbow_parenthesis.vim
+  au BufNewFile,BufRead * RainbowParentheses
+
   " improve postcss syntax highlighting by using scss ft
   au BufRead,BufNewFile *.css set ft=scss
 
@@ -196,12 +201,16 @@ set smartcase
 "-------------------------------------------------------------------------------
 " COLORS
 "-------------------------------------------------------------------------------
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 syntax on
 set background=dark
-color duotone-darkmeadow
+color base16-paraiso
+
+let g:rainbow#pairs = [['(', ')'], ['{', '}'], ['[', ']']]
+let g:rainbow#blacklist= [14, 7]
 
 set list
 set listchars=tab:>-,trail:_
 
-highlight SpecialKey ctermfg=red guifg=red
-highlight Normal ctermbg=0
+highlight SpecialKey guifg=red
+highlight Normal guibg=#111111
