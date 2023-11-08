@@ -7,6 +7,18 @@
 
 Welcome `$HOME`!
 
-This repo is currently under construction. It will probably always be a work in
-progress because I love customizing my environment, but it will be much more
-stable and descriptive than its current state very soon--stay tuned.
+These dotfiles are for a Unix OS (Linux, macOS), since that's where I choose to
+do my development. This set up is untested (and unsupported) on Windows.
+
+I'm using [chezmoi](https://www.chezmoi.io/) as my configuration tool of
+choice.
+
+My core workflow is centered around [neovim](https://neovim.io/) and
+[tmux](https://github.com/tmux/tmux). I enjoy working mostly in the terminal as
+opposed to dedicated desktop GUIs (with a few notable exceptions, such as web
+browsing).
+
+## Stability: :yellow_circle:
+
+I've been doing quite a bit of work on these lately, and I'm not done yet. I do
+expect more changes in the near future.

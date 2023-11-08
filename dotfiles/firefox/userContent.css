@@ -1,4 +1,0 @@
-@-moz-document url(about:newtab) {
-  body { background-color: black !important; }
-  #newtab-customize-button { display: none; }
-}
