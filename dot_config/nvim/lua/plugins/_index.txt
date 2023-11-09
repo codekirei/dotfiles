@@ -1,0 +1,62 @@
+--------------------------------------------------------------------------------
+       ___
+      /\_ \                    __
+ _____\//\ \    __  __     __ /\_\    ___     ____
+/\ '__`\\ \ \  /\ \/\ \  /'_ `\/\ \ /' _ `\  /',__\
+\ \ \L\ \\_\ \_\ \ \_\ \/\ \L\ \ \ \/\ \/\ \/\__, `\
+ \ \ ,__//\____\\ \____/\ \____ \ \_\ \_\ \_\/\____/
+  \ \ \/ \/____/ \/___/  \/___L\ \/_/\/_/\/_/\/___/
+   \ \_\                   /\____/
+    \/_/                   \_/__/
+
+--------------------------------------------------------------------------------
+
+-- PACKAGE MANAGER -------------------------------------------------------------
+
+folke/lazy.nvim
+
+-- COLORSCHEME -----------------------------------------------------------------
+
+EdenEast/nightfox.nvim
+
+-- TREESITTER AST --------------------------------------------------------------
+
+nvim-treesitter/nvim-treesitter             | better syntax highlighting
+nvim-treesitter/nvim-treesitter-context     | show cursor context at top of buf
+JoosepAlviste/nvim-ts-context-commentstring | parse multiple syntax types in one file
+
+-- PASSIVE UI IMPROVEMENTS -----------------------------------------------------
+
+brenoprata10/nvim-highlight-colors | render hex colors
+echasnovski/mini.indentscope       | show scope via indentation highlight
+folke/which-key.nvim               | show hotkeys on timeout
+nvim-lualine/lualine.nvim          | better status bar
+nvim-tree/nvim-web-devicons        | adds missing icons
+rcarriga/nvim-notify               | better notifications
+stevearc/dressing.nvim             | general UI improvements
+
+-- CALLABLE INTERFACES ---------------------------------------------------------
+
+echasnovski/mini.map             | toggleable vertical code map
+jonarrien/telescope-cmdline.nvim | floating cmd via <leader>;
+luckasRanarison/nvim-devdocs     | devdocs via telescope
+nvim-telescope/telescope.nvim    | search interface
+
+-- PASSIVE EDITING IMPROVEMENTS ------------------------------------------------
+
+windwp/nvim-autopairs        | automatically create closing pair chars
+max397574/better-escape.nvim | <Esc> via key sequence (kj) without delay
+
+-- CALLABLE EDITING IMPROVEMENTS -----------------------------------------------
+
+danymat/neogen             | autogen doc strings
+echasnovski/mini.align     | mutli-line vertical alignment
+echasnovski/mini.splitjoin | gS to toggle comma-lists to same line or own lines
+folke/twilight.nvim        | toggle zen mode
+numToStr/Comment.nvim      | fast comment togles with gc*
+zef/vim-cycle              | supercharge <C-a>, like for true<->false
+
+-- GIT INTEGRATION -------------------------------------------------------------
+
+lewis6991/gitsigns.nvim | show symbols in gutter for changes
+sindrets/diffview.nvim  | multi-file git diff viewer
