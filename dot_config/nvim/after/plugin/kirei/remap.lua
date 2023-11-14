@@ -90,6 +90,7 @@ k('n', '<leader>l', require('lint').try_lint, { desc = 'Lint this file' })
 k('n', '<leader>sd', require('neogen').generate, { desc = 'Generate docstring' })
 k('n', '<leader>tf', require('twilight').toggle, { desc = 'Toggle focus' })
 k('n', '<leader>tm', require('mini.map').toggle, { desc = 'Toggle minimap' })
+k('n', '<leader>tl', ':LspRestart<CR>', { desc = 'Restart LSP' })
 k('n', '<leader>fd', ':DevdocsOpenCurrent<CR>', { desc = 'Find dev docs' })
 
 k('n', '<leader>ff', tele.find_files, { desc = 'Find files' })
