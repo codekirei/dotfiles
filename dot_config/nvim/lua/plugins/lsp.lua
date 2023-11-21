@@ -53,6 +53,7 @@ local function config()
 		ensure_installed = {
 			"clang-format",
 			"gofumpt",
+			"goimports",
 			"prettierd",
 			"sqlfmt",
 			"stylua",
@@ -67,7 +68,7 @@ local function config()
 		formatters_by_ft = {
 			["c++"] = { "clang-format" },
 			c = { "clang-format" },
-			go = { "gofumpt" },
+			go = { "goimports", "gofumpt" },
 			javascript = { "prettierd" },
 			json = { "prettierd" },
 			lua = { "stylua" },
