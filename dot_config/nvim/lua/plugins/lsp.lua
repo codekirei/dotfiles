@@ -34,7 +34,6 @@ local function config()
 			"lua_ls",
 			"marksman", -- markdown
 			"rust_analyzer",
-			"sqlls",
 			"tsserver", -- typescript
 			"yamlls",
 		},
@@ -55,7 +54,6 @@ local function config()
 			"gofumpt",
 			"goimports",
 			"prettierd",
-			"sqlfmt",
 			"stylua",
 		},
 	})
@@ -73,7 +71,6 @@ local function config()
 			json = { "prettierd" },
 			lua = { "stylua" },
 			rust = { "rustfmt" }, -- see comment at EOF
-			sql = { "sqlfmt" },
 			typescript = { "prettierd" },
 		},
 		format_after_save = {
