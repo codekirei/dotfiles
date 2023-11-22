@@ -33,6 +33,7 @@ local function config()
 			"jsonls",
 			"lua_ls",
 			"marksman", -- markdown
+			"sqlls",
 			"rust_analyzer",
 			"tsserver", -- typescript
 			"yamlls",
@@ -55,13 +56,22 @@ local function config()
 			"goimports",
 			"prettierd",
 			"stylua",
+			"sql-formatter",
+			"sqlfluff",
 		},
 	})
 
-	-- supplementary linting; many LSPs do linting
-	require("lint").linters_by_ft = {}
+	-- Supplementary linting. Many LSPs do linting, but sometimes a dedicated
+	-- linter is better.
+	require("lint").linters_by_ft = {
+		sql = { "sqlfluff" },
+	}
 
-	-- auto-formatting; generally preferred over LSP formatting
+	-- Auto-formatting. Generally preferred over LSP formatting.
+	-- Note that formatter names here must match the Conform formatter list to
+	-- autoload configs, and the names don't always match the Mason package names.
+	-- e.g. Mason: sql-formatter <-> Conform: sql_formatter
+	-- :h conform-formatters
 	require("conform").setup({
 		formatters_by_ft = {
 			["c++"] = { "clang-format" },
@@ -71,6 +81,7 @@ local function config()
 			json = { "prettierd" },
 			lua = { "stylua" },
 			rust = { "rustfmt" }, -- see comment at EOF
+			sql = { "sql_formatter" },
 			typescript = { "prettierd" },
 		},
 		format_after_save = {
