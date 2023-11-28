@@ -5,6 +5,8 @@
 [credential]
 	; 3 hours
 	helper = cache --timeout=10800
+[credential "https://github.com"]
+	username = codekirei
 [diff "lockb"]
 	textconv = bun
 	binary = true
