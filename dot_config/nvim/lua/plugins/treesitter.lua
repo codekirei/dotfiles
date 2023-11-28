@@ -32,12 +32,16 @@ local opts = {
 	highlight = { enable = true },
 }
 
-local function config(_, opts)
+local function config()
 	require("nvim-treesitter.configs").setup(opts)
+	require("nvim-treesitter.install").compilers = { "gcc-11" }
+	require("tree-sitter-just").setup({})
 end
 
 return {
 	"nvim-treesitter/nvim-treesitter",
-	opts = opts,
 	config = config,
+	dependencies = {
+		"IndianBoy42/tree-sitter-just",
+	},
 }

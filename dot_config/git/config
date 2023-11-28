@@ -3,7 +3,10 @@
 [user]
 	name = Jacob Blakely
 [credential]
-	helper = cache --timeout 10800 ; 3 hours
+	; 3 hours
+	helper = cache --timeout=10800
 [diff "lockb"]
 	textconv = bun
 	binary = true
+
+; vim: ft=gitconfig
