@@ -9,6 +9,9 @@ k("v", "K", ":m '<-2<CR>gv=gv")
 -- overwrites 'z' mark
 k("n", "J", "mzJ`z")
 
+-- don't highlight after *
+k("n", "*", "*:noh<CR>", { silent = true })
+
 -- stay centered when scrolling or searching
 k("n", "<C-d>", "<C-d>zz")
 k("n", "<C-u>", "<C-u>zz")
