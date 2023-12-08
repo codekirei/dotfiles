@@ -84,6 +84,11 @@ local function config()
 			sql = { "sql_formatter" },
 			typescript = { "prettierd" },
 		},
+		formatters = {
+			sql_formatter = {
+				args = { "--config", ".sql-formatter.json" },
+			},
+		},
 		format_after_save = {
 			lsp_fallback = true,
 		},
