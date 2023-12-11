@@ -39,6 +39,12 @@ end
 
 k("n", "-", ex_to_current_file)
 
+-- Buffers ---------------------------------------------------------------------
+-- modified from kshenoy and shmup on stackoverflow
+vim.api.nvim_create_user_command("BufOnly", "%bd|e#|bd#", {})
+k("n", "<leader>bo", ":BufOnly<cr>", { desc = "Close other bufs", silent = true })
+k("n", "<leader>bb", tele.buffers, { desc = "Browse bufs" })
+
 -- random chars ----------------------------------------------------------------
 local function random_char()
 	local code = math.random(65, 65 + 50)
@@ -97,6 +103,7 @@ k("n", "gI", tele.lsp_references, { desc = "Go to reference" })
 
 require("which-key").register({
 	["<leader>"] = {
+		b = { name = "+buffer" },
 		e = { name = "+external" },
 		f = { name = "+find" },
 		g = { name = "+generate" },
@@ -116,6 +123,5 @@ k("n", "<leader>gr", insert_random_char, { desc = "Generate random alpha char" }
 
 k("n", "<leader>ff", tele.find_files, { desc = "Find files" })
 k("n", "<leader>fg", tele.live_grep, { desc = "Find string (grep)" })
-k("n", "<leader>fb", tele.buffers, { desc = "Find buffer" })
 k("n", "<leader>fs", tele.lsp_document_symbols, { desc = "Find symbol (buffer)" })
 k("n", "<leader>fS", tele.lsp_workspace_symbols, { desc = "Find symbol (workspace)" })
