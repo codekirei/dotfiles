@@ -41,7 +41,7 @@ k("n", "-", ex_to_current_file)
 
 -- Buffers ---------------------------------------------------------------------
 -- modified from kshenoy and shmup on stackoverflow
-vim.api.nvim_create_user_command("BufOnly", "%bd|e#|bd#", {})
+vim.api.nvim_create_user_command("BufOnly", "%bd|e#|bd#|'\"", {})
 k("n", "<leader>bo", ":BufOnly<cr>", { desc = "Close other bufs", silent = true })
 k("n", "<leader>bb", tele.buffers, { desc = "Browse bufs" })
 
