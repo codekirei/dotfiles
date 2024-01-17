@@ -83,6 +83,7 @@ local function config()
 			rust = { "rustfmt" }, -- see comment at EOF
 			sql = { "sql_formatter" },
 			typescript = { "prettierd" },
+			typescriptreact = { "prettierd" },
 		},
 		formatters = {
 			sql_formatter = {
