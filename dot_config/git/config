@@ -10,5 +10,7 @@
 [diff "lockb"]
 	textconv = bun
 	binary = true
+[push]
+	autoSetupRemote = true
 
 ; vim: ft=gitconfig
