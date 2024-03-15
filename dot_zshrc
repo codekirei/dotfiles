@@ -3,9 +3,6 @@ chpwd() {
   ls
 }
 
-# [G]it [B]ranch [L]log
-alias gbl="git log HEAD --not main --no-merges --reverse --pretty=format:\"%h | %s%n%n%b%n---%n\""
-
 # XDG ENV VARS -----------------------------------------------------------------
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"

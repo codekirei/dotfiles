@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# [P]retty [B]ranch [R]report
+
+# get name of primary branch, usually `main` or `master`
+PRIMARY_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | rev | cut -d'/' -f1 | rev)
+
+# sed '$d' deletes last line
+git log HEAD --not $PRIMARY_BRANCH --no-merges --reverse --pretty=format:"%h | %s%n%n%b%n---%n" | sed '$d'
