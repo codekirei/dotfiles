@@ -1,0 +1,57 @@
+alias ls="gls -Ap --color=always --group-directories-first"
+chpwd() {
+  ls
+}
+
+# [G]it [B]ranch [L]log
+alias gbl="git log HEAD --not main --no-merges --reverse --pretty=format:\"%h | %s%n%n%b%n---%n\""
+
+# XDG ENV VARS -----------------------------------------------------------------
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+
+# PATH manipulation ------------------------------------------------------------
+safe_path_prepend () {
+  [[ "$PATH" =~ "$1" ]] || PATH="$1:$PATH"
+}
+
+safe_path_prepend "/Users/jacob/usr/bin"
+safe_path_prepend "/Users/jacob/.local/bin"
+safe_path_prepend "/Users/jacob/.local/pipx/venvs/poetry/bin"
+
+export PATH
+
+# PACKAGE MANAGEMENT -----------------------------------------------------------
+. /usr/local/opt/asdf/libexec/asdf.sh
+
+# GOLANG -----------------------------------------------------------------------
+CGO_ENABLED=1
+source ~/.asdf/plugins/golang/set-env.zsh
+export GOBIN="/Users/jacob/.local/bin"
+
+# OTHER GLOBAL ENV VARS --------------------------------------------------------
+export EDITOR="nvim"
+export VISUAL="nvim"
+
+# JOURNAL ----------------------------------------------------------------------
+JOURNAL="/Users/jacob/docs/journal/"
+j () {
+  local FNAME="$JOURNAL$(date +%Y-%m-%d).txt"
+  # [[ -f $FNAME ]] || echo $TEMPLATE > $FNAME
+  $EDITOR $FNAME
+}
+
+# POMODORO ---------------------------------------------------------------------
+# requires openpomodoro-cli
+# requires beeb (beeep cli wrapper)
+p () {
+  # TODO: support linux notifications
+  local SCRIPT='display notification "Session complete! Take a break..." with title "Pomodoro"'
+  pomodoro start "$@" \
+    && find ~/.pomodoro/current \
+    | entr -pz osascript -e $SCRIPT &
+}
+
+# ALIASES ----------------------------------------------------------------------
+alias cm="chezmoi"
+alias e="$EDITOR"

@@ -11,7 +11,7 @@
 	textconv = bun
 	binary = true
 [pull]
-  rebase = true
+	rebase = true
 [push]
 	autoSetupRemote = true
 
