@@ -1,3 +1,5 @@
+LOCALBIN="/Users/jacob/usr/bin"
+
 alias ls="gls -AXp --color=always --group-directories-first"
 chpwd() {
   ls
@@ -14,8 +16,7 @@ safe_path_prepend () {
   [[ "$PATH" =~ "$1" ]] || PATH="$1:$PATH"
 }
 
-safe_path_prepend "/Users/jacob/usr/bin"
-safe_path_prepend "/Users/jacob/.local/bin"
+safe_path_prepend "$LOCALBIN"
 safe_path_prepend "/Users/jacob/.local/pipx/venvs/poetry/bin"
 
 export PATH
@@ -29,7 +30,7 @@ export PATH
 # GOLANG -----------------------------------------------------------------------
 CGO_ENABLED=1
 source ~/.asdf/plugins/golang/set-env.zsh
-export GOBIN="/Users/jacob/.local/bin"
+export GOBIN="$LOCALBIN"
 
 # OTHER GLOBAL ENV VARS --------------------------------------------------------
 export EDITOR="nvim"
