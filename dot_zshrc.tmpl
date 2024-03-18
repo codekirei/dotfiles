@@ -20,8 +20,11 @@ safe_path_prepend "/Users/jacob/.local/pipx/venvs/poetry/bin"
 
 export PATH
 
+{{- if eq .chezmoi.os "darwin" }}
+
 # VERSION MANAGEMENT -----------------------------------------------------------
-. /usr/local/opt/asdf/libexec/asdf.sh
+. $(brew --prefix asdf)/libexec/asdf.sh
+{{- end}}
 
 # GOLANG -----------------------------------------------------------------------
 CGO_ENABLED=1
