@@ -2,6 +2,7 @@
 	defaultBranch = main
 [user]
 	name = Jacob Blakely
+	email = {{ .git.email | quote }}
 [credential]
 	; 3 hours
 	helper = cache --timeout=10800
