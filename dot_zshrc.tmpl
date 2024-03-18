@@ -1,15 +1,40 @@
 LOCALBIN="/Users/jacob/usr/bin"
 
-alias ls="gls -AXp --color=always --group-directories-first"
-chpwd() {
-  ls
-}
-
 # XDG ENV VARS -----------------------------------------------------------------
 export XDG_CACHE_HOME="$HOME"/.cache
 export XDG_CONFIG_HOME="$HOME"/.config
 export XDG_DATA_HOME="$HOME"/.local/share
 export XDG_STATE_HOME="$HOME"/.local/state
+
+# ------------------------------------------------------------------------------
+# KEEP HOME CLEAN
+# https://wiki.archlinux.org/title/XDG_Base_Directory#Hardcoded
+# ------------------------------------------------------------------------------
+alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
+
+export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME"/asdf/asdfrc
+export ASDF_DATA_DIR="$XDG_DATA_HOME"/asdf_plugins
+export ASDF_DIR="$XDG_DATA_HOME"/asdf
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
+export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
+export W3M_DIR="$XDG_DATA_HOME"/w3m
+export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+export XINITRC="$XDG_CONFIG_HOME"/x11/xinitrc
+export npm_config_cache="$XDG_CACHE_HOME"/npm
+
+# Add ZSH completions from brew ------------------------------------------------
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+  autoload -Uz compinit
+  compinit
+fi
+
+# Pretty ls --------------------------------------------------------------------
+alias ls="gls -AXp --color=always --group-directories-first"
+chpwd() {
+  ls
+}
 
 # PATH manipulation ------------------------------------------------------------
 safe_path_prepend () {
@@ -21,11 +46,8 @@ safe_path_prepend "/Users/jacob/.local/pipx/venvs/poetry/bin"
 
 export PATH
 
-{{- if eq .chezmoi.os "darwin" }}
-
 # VERSION MANAGEMENT -----------------------------------------------------------
-. $(brew --prefix asdf)/libexec/asdf.sh
-{{- end}}
+. "$ASDF_DIR"/asdf.sh
 
 # GOLANG -----------------------------------------------------------------------
 CGO_ENABLED=1
@@ -59,19 +81,3 @@ p () {
 alias cm="chezmoi"
 alias e="$EDITOR"
 alias vim="vim -u $XDG_CONFIG_HOME/vim/vimrc"
-
-# ------------------------------------------------------------------------------
-# KEEP HOME CLEAN
-# https://wiki.archlinux.org/title/XDG_Base_Directory#Hardcoded
-# ------------------------------------------------------------------------------
-alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
-
-export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME"/asdf/asdfrc
-export ASDF_DATA_DIR="$XDG_DATA_HOME"/asdf
-export ASDF_DIR="$XDG_DATA_HOME"/asdf
-export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
-export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
-export W3M_DIR="$XDG_DATA_HOME"/w3m
-export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
-export XINITRC="$XDG_CONFIG_HOME"/x11/xinitrc
-export npm_config_cache="$XDG_CACHE_HOME"/npm
