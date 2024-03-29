@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# get name of primary branch, usually `main` or `master`
+PRIMARY_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | rev | cut -d'/' -f1 | rev)
+
+git branch --merged | grep -Ev "$PRIMARY_BRANCH" | xargs git branch -d
