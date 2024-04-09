@@ -24,7 +24,6 @@ local function config()
     -- Use LSP server names, not Mason package names.
     ensure_installed = {
       'ansiblels',
-      'astro',
       'clangd', -- c, c++
       'cssls',
       'docker_compose_language_service',
@@ -34,6 +33,8 @@ local function config()
       'jsonls',
       'lua_ls',
       'marksman', -- markdown
+      'pyright', -- python
+      'ruff_lsp', -- python
       'sqlls',
       'rust_analyzer',
       'tsserver', -- typescript
@@ -46,6 +47,52 @@ local function config()
           capabilities = _capabilities,
         })
       end,
+      ['pyright'] = function()
+        lspconfig.pyright.setup({
+          capabilities = _capabilities,
+          settings = {
+            python = {
+              analysis = {
+                diagnosticSeverityOverrides = {
+                  reportIncompatibleVariableOverride = 'none',
+                  reportIncompatibleMethodOverride = 'none',
+                },
+              },
+            },
+          },
+        })
+      end,
+      -- ['eslint'] = function()
+      --   lspconfig.eslint.setup({
+      --     capabilities = _capabilities,
+      --     root_dir = lspconfig.util.root_pattern(
+      --       'eslint.config.js',
+      --       'eslint.config.cjs',
+      --       'eslint.config.mjs',
+      --       '.eslintrc.js',
+      --       '.eslintrc.cjs',
+      --       '.eslintrc.json',
+      --       'package.json',
+      --       '.git'
+      --     ),
+      --     settings = {
+      --       eslint = {
+      --         useFlatConfig = true,
+      --         workingDirectories = { mode = 'auto' },
+      --         validate = {
+      --           'javascript',
+      --           'javascriptreact',
+      --           'typescript',
+      --           'typescriptreact',
+      --         },
+      --         -- helpful debug override
+      --         options = {
+      --           overrideConfigFile = vim.fn.getcwd() .. '/eslint.config.mjs',
+      --         },
+      --       },
+      --     },
+      --   })
+      -- end,
     },
   })
 
@@ -55,7 +102,7 @@ local function config()
       'clang-format',
       'gofumpt',
       'goimports',
-      'prettierd',
+      'prettier',
       'stylua',
       'sql-formatter',
       'sqlfluff',
@@ -64,8 +111,11 @@ local function config()
 
   -- Supplementary linting. Many LSPs do linting, but sometimes a dedicated
   -- linter is better.
+  vim.env.ESLINT_D_PPID = vim.fn.getpid()
   require('lint').linters_by_ft = {
     sql = { 'sqlfluff' },
+    typescript = { 'eslint_d' },
+    typescriptreact = { 'eslint_d' },
   }
 
   -- Auto-formatting. Generally preferred over LSP formatting.
@@ -78,23 +128,35 @@ local function config()
       ['c++'] = { 'clang-format' },
       c = { 'clang-format' },
       go = { 'goimports', 'gofumpt' },
-      javascript = { 'prettierd' },
-      json = { 'prettierd' },
+      javascript = { 'prettier' },
+      json = { 'prettier' },
+      jsonc = { 'prettier' },
       lua = { 'stylua' },
+      markdown = { 'prettier' },
       rust = { 'rustfmt' }, -- see comment at EOF
+      sh = { 'shfmt' },
       sql = { 'sql_formatter' },
-      typescript = { 'prettierd' },
-      typescriptreact = { 'prettierd' },
+      typescript = { 'prettier' },
+      typescriptreact = { 'prettier' },
     },
     formatters = {
       sql_formatter = {
         args = { '--config', '.sql-formatter.json' },
       },
+      prettier = {
+        prefer_local = true,
+      },
+      shfmt = {
+        args = { '-i', '2' },
+      },
     },
     format_after_save = {
       lsp_fallback = true,
     },
+    -- log_level = vim.log.levels.DEBUG,
   })
+
+  vim.lsp.set_log_level(vim.log.levels.DEBUG)
 end
 
 return {
@@ -106,7 +168,10 @@ return {
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     'jay-babu/mason-nvim-dap.nvim',
     'mfussenegger/nvim-lint',
-    'stevearc/conform.nvim',
+    {
+      'stevearc/conform.nvim',
+      version = 'v7.1.0',
+    },
     'hrsh7th/cmp-nvim-lsp',
   },
 }
