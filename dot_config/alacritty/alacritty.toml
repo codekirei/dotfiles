@@ -1,0 +1,35 @@
+[general]
+live_config_reload = true
+
+[window]
+startup_mode = "Maximized"
+padding = { x = 10, y = 0 }
+option_as_alt = "Both"
+decorations = "None"
+
+[font]
+normal.family = "Monoid Nerd Font Mono"
+bold.family = "Monoid Nerd Font Mono"
+italic.family = "Monoid Nerd Font Mono"
+size = 14.5
+
+# Modified Argonaut Color Theme
+# https://github.com/alacritty/alacritty-theme
+[colors.normal]
+black   = '#0d0d0d'
+red     = '#FF301B'
+green   = '#A0E521'
+yellow  = '#FFC620'
+blue    = '#1BA6FA'
+magenta = '#8763B8'
+cyan    = '#21DEEF'
+white   = '#EBEBEB'
+[colors.bright]
+black   = '#6D7070'
+red     = '#FF4352'
+green   = '#B8E466'
+yellow  = '#FFD750'
+blue    = '#1BA6FA'
+magenta = '#A578EA'
+cyan    = '#73FBF1'
+white   = '#FEFEF8'
