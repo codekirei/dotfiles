@@ -1,6 +1,5 @@
 local opts = {
   ensure_installed = {
-    'astro',
     'c',
     'css',
     'csv',
@@ -18,6 +17,8 @@ local opts = {
     'json',
     'lua',
     'make',
+    'markdown',
+    'markdown_inline',
     'norg',
     'python',
     'query',

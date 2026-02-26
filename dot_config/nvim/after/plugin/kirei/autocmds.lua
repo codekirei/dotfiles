@@ -42,3 +42,19 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', '<space>rr', vim.lsp.buf.rename, opts)
   end,
 })
+
+vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
+  group = group,
+  callback = function()
+    --[[
+    Sometimes in a monorepo different packages have their own lint configs. This code finds the
+    closest dir that matches root_pattern and passes that to try_lint as the cwd,
+    which gives us a good chance at finding a working config.
+
+    TODO: expand this to actual config files and other file types.
+    --]]
+    local util = require('lspconfig.util')
+    local cwd = util.root_pattern('package.json', '.tool-versions')(vim.fn.expand('%:p')) or vim.loop.cwd()
+    require('lint').try_lint(nil, { cwd = cwd })
+  end,
+})
