@@ -1,0 +1,92 @@
+#!/usr/bin/env sh
+
+set -eu
+
+VM_NAME=devbox
+WORKDIR=/home/kirei
+
+## TODO
+# - extract (copy from)
+# - inject (copy to)
+# - ensure limactl exists
+
+usage() {
+  cat <<'EOF'
+Usage:
+  devbox <command> [args...]
+
+Commands:
+  up                Spin up the devbox.
+  down              Shut down the devbox.
+  shell             Open a shell in the devbox.
+  status            Show status of devbox.
+  config            Edit devbox config.
+  reboot            Power cycles devbox.
+  create            Creates devbox.
+  run <cmd...>      Run an arbitrary command in the devbox.
+  help              Show this help.
+
+Examples:
+  devbox start
+  devbox run echo hello
+EOF
+}
+
+# Need at least one argument
+[ $# -ge 1 ] || {
+  usage
+  exit 2
+}
+
+cmd=$1
+shift
+
+case "$cmd" in
+up)
+  limactl start $VM_NAME
+  ;;
+
+down)
+  limactl stop $VM_NAME
+  ;;
+
+shell)
+  limactl shell --workdir $WORKDIR $VM_NAME
+  ;;
+
+status)
+  limactl list
+  ;;
+
+config)
+  limactl edit $VM_NAME
+  ;;
+
+reboot)
+  limactl restart $VM_NAME
+  ;;
+
+run)
+  [ $# -ge 1 ] || {
+    echo "nothing to run" >&2
+    exit 2
+  }
+  limactl shell --workdir $WORKDIR $VM_NAME -- "$@"
+  ;;
+
+create)
+  limactl create --name=devbox template:debian-12
+  rm ~/.lima/devbox/lima.yaml
+  ln -s ~/.config/devbox/lima.yaml ~/.lima/devbox/lima.yaml
+  ;;
+
+help | -h | --help)
+  usage
+  ;;
+
+*)
+  echo "Unknown command: $cmd" >&2
+  usage >&2
+  exit 2
+  ;;
+esac

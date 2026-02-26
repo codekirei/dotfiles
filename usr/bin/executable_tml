@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+# [TM]ux [L]aunch
+
+selected=$(
+  for f in ~/.config/laio/*.yaml; do
+    base=${f##*/}
+    printf '%s\t%s\n' "${base%.yaml}"
+  done |
+    fzf --layout=reverse-list
+)
+
+[ -n "$selected" ] && laio start "$selected"

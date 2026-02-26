@@ -1,0 +1,60 @@
+#!/usr/bin/env sh
+
+# tmux-title
+# Update the current tmux session name based on an input string and a flag.
+#
+# Usage:
+#   tmux-title -t code "verticals > leadrouter"
+#   tmux-title -t prod "verticals"
+#   tmux-title "just a title"
+
+set -eu
+
+usage() {
+  echo "Usage: $0 [-t type] \"title\"" >&2
+  exit 2
+}
+
+type=""
+while getopts "t:h" opt; do
+  case "$opt" in
+  t) type="$OPTARG" ;;
+  h) usage ;;
+  *) usage ;;
+  esac
+done
+shift $((OPTIND - 1))
+
+[ $# -ge 1 ] || usage
+title="$*"
+
+# must be running inside tmux
+if [ -z "${TMUX-}" ]; then
+  echo "Error: not inside tmux" >&2
+  exit 1
+fi
+
+emoji=""
+case "$type" in
+"") emoji="" ;;
+chart) emoji="📊" ;;
+code) emoji="🚀" ;;
+config) emoji="🔮" ;;
+doc) emoji="📎" ;;
+mail) emoji="📫" ;;
+science) emoji="🧪" ;;
+shell) emoji="🥷" ;;
+task) emoji="✅" ;;
+*)
+  # unknown type: no emoji (or set a default like "🏷️")
+  emoji=""
+  ;;
+esac
+
+out="$title"
+if [ -n "$emoji" ]; then
+  out="$emoji $title"
+fi
+
+tmux rename-session "$out"
+echo "$out"

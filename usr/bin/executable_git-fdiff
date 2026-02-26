@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+set -eu
+
+# f(ile)diff
+
+PRIMARY=$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD | sed 's@^origin/@@')
+
+echo $PRIMARY
+
+git diff $PRIMARY --name-only | fzf --preview 'bat --style=numbers --color=always --line-range :200 --paging=never {}' | xargs git diff $PRIMARY
