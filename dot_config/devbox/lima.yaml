@@ -1,0 +1,55 @@
+minimumLimaVersion: 2.0.0
+
+# BASE CONFIG ----------------------------------------------------------------------------------------------------------
+
+vmType: vz
+mountType: virtiofs
+mountTypesUnsupported: [9p]
+
+# IMAGES ---------------------------------------------------------------------------------------------------------------
+
+images:
+
+# Try to use release-yyyyMMdd image if available. Note that release-yyyyMMdd will be removed after several months.
+
+- location: "https://cloud.debian.org/images/cloud/bookworm/20251112-2294/debian-12-genericcloud-arm64-20251112-2294.qcow2"
+  arch: "aarch64"
+  digest: "sha512:1b7086f0cae5ca855e15f18de8dabf3980db87ffccc1b8f3045e0803cb2f0979928b83cdc3761bf46ed557f859c3bc3298c2f53751f3e49ea7a08f2585a7e546"
+
+# Fallback to the latest release image.
+# Hint: run `limactl prune` to invalidate the cache
+
+- location: https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-genericcloud-arm64.qcow2
+  arch: aarch64
+
+# FILESYSTEM MOUNTPOINTS -----------------------------------------------------------------------------------------------
+
+mounts:
+  - location: "~/.config/devbox/mount"
+    mountPoint: "/mnt/provisioning"
+    writable: false
+
+# USER -----------------------------------------------------------------------------------------------------------------
+
+user:
+  name: kirei
+  home: /home/kirei
+
+# PROVISIONING ---------------------------------------------------------------------------------------------------------
+
+provision:
+  - mode: system
+    script: |
+      #!/usr/bin/env sh
+
+      set -eux
+
+      export HOME=/root
+
+      # Install nix if it isn't already.
+      if [ ! -x /nix/var/nix/profiles/default/bin/nix ]; then
+        sh /mnt/provisioning/nix-installer_2026-02-23.sh --daemon
+      fi
+
+      # Run rest of provisioning.
+      sh /mnt/provisioning/provision.sh
