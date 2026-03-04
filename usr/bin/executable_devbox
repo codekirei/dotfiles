@@ -23,6 +23,7 @@ Commands:
   config            Edit devbox config.
   reboot            Power cycles devbox.
   create            Creates devbox.
+  destroy           Destroys devbox.
   run <cmd...>      Run an arbitrary command in the devbox.
   help              Show this help.
 
@@ -75,9 +76,14 @@ run)
   ;;
 
 create)
-  limactl create --name=devbox template:debian-12
-  rm ~/.lima/devbox/lima.yaml
-  ln -s ~/.config/devbox/lima.yaml ~/.lima/devbox/lima.yaml
+  limactl create -y --name=$VM_NAME ~/.config/devbox/lima.yaml
+  rm ~/.lima/"$VM_NAME"/lima.yaml
+  ln -s ~/.config/devbox/lima.yaml ~/.lima/"$VM_NAME"/lima.yaml
+  ;;
+
+destroy)
+  limactl stop -f $VM_NAME
+  rm -rf ~/.lima/"$VM_NAME"
   ;;
 
 help | -h | --help)

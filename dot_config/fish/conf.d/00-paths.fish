@@ -1,4 +1,6 @@
 set -l prepend_paths (string split \n -- (string trim -- "
+/nix/var/nix/profiles/default/bin
+$HOME/.local/share/mise/shims
 $HOME/.nix-profile/bin
 "))
 

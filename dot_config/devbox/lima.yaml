@@ -28,6 +28,9 @@ mounts:
   - location: "~/.config/devbox/mount"
     mountPoint: "/mnt/provisioning"
     writable: false
+  - location: "~/.config/devbox/mount-secret"
+    mountPoint: "/mnt/private"
+    writable: false
 
 # USER -----------------------------------------------------------------------------------------------------------------
 
@@ -44,11 +47,16 @@ provision:
 
       set -eux
 
-      export HOME=/root
+      export HOME=/home/kirei
 
-      # Install nix if it isn't already.
+      # Install nix.
       if [ ! -x /nix/var/nix/profiles/default/bin/nix ]; then
         sh /mnt/provisioning/nix-installer_2026-02-23.sh --daemon
+      fi
+
+      # Install mise.
+      if [ ! -x /home/kirei/.local/bin/mise ]; then
+        sh /mnt/provisioning/mise-run_2026-02-26.sh
       fi
 
       # Run rest of provisioning.

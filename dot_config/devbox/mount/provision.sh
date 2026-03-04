@@ -4,17 +4,39 @@ set -eux
 
 # TOC --------------------------------------------------------------------------
 
+# Notes and Help             [rFGF]
 # Configuration              [hwpI]
+# Filesystem setup           [bLks]
 # Install apt packages       [UwaC]
 # Install nix packages       [ekWP]
 # Install mise packages      [hBAB]
+# Install uv packages        [ubXk]
 # Configure dotfiles         [BEor]
 # Set fish as primary shell  [wHLo]
 # Install nerdfont of choice [YElJ]
 
+# Notes and Help -------------------------------------------------------- [rFGF]
+
+# Initialization logs are in /var/log/cloud-init-output.log
+
+# To make sure you're in the correct login shell:
+# ps -p %self
+
 # Configuration --------------------------------------------------------- [hwpI]
 
 LOCAL_USER=kirei
+LOCAL_HOME="/home/$LOCAL_USER"
+DOTFILES_REPO="https://github.com/codekirei/dotfiles.git"
+
+# Filesystem setup ------------------------------------------------------ [bLks]
+
+chown kirei:kirei "$LOCAL_HOME"/.local/bin
+
+mkdir -p "$LOCAL_HOME"/usr
+chown kirei:kirei "$LOCAL_HOME"/usr
+
+mkdir -p "$LOCAL_HOME"/.config/chezmoi
+ln -s /mnt/private/chezmoi.toml "$LOCAL_HOME"/.config/chezmoi/chezmoi.toml
 
 # Install apt packages -------------------------------------------------- [UwaC]
 
@@ -28,10 +50,13 @@ while IFS= read -r pkg; do
   echo "==> Installing: $pkg"
   apt-get install -y "$pkg"
 done <<'EOF'
+build-essential
 fontconfig
 EOF
 
 # Install nix packages -------------------------------------------------- [ekWP]
+
+# Packages get installed to ~/.nix-profile/bin
 
 # Nasty.
 # - runs as specified user, so packages are installed to user profile instead of
@@ -53,55 +78,101 @@ while IFS= read -r pkg; do
   user_nix profile add "nixpkgs#$pkg"
 done <<'EOF'
 alacritty
+fish
+git
+lazysql
+mdp
+p7zip
+tig
+tmuxPlugins.tmux-powerline
+tshark
+EOF
+
+# Install mise packages ------------------------------------------------- [hBAB]
+
+# Packages get installed to ~/.local/share/mise/shims
+
+user_mise() {
+  sudo -iu "$LOCAL_USER" \
+    "/home/$LOCAL_USER/.local/bin/mise" \
+    "$@"
+}
+
+while IFS= read -r pkg; do
+  [ -n "$pkg" ] || continue            # skip blank lines
+  case "$pkg" in \#*) continue ;; esac # skip commented lines
+  echo "==> Installing: $pkg"
+  user_mise use -g "$pkg@latest"
+done <<'EOF'
+# langs
+rust
+go
+
+# tools
 bat
 caddy
 chezmoi
+claude
+codex
+crush
 delta
-# direnv
+direnv
 fd
-fish
-fontconfig
 fzf
-git
+ghorg
 glab
 glow
-jiratui
 jq
+jqp
 lazydocker
 lazygit
-lazysql
-mise
 neovim
-p7zip
+opencode
 redis
 ripgrep
-tig
 tmux
-tmuxPlugins.tmux-powerline
-tshark
+uv
 watchexec
 yq
 EOF
 
-# not in nixpkgs, or too outdated
-user_nix profile add "github:ck3mp3r/laio-cli"
-user_nix profile add "github:numtide/llm-agents.nix#crush"
-user_nix profile add "github:numtide/llm-agents.nix#codex"
-user_nix profile add "github:numtide/llm-agents.nix#claude-code"
+# Install UV packages --------------------------------------------------- [ubXk]
 
-# Install mise packages ------------------------------------------------- [hBAB]
+# Packages are symlinked in ~/.local/bin
 
-user_mise() {
+user_uv() {
   sudo -iu "$LOCAL_USER" \
-    "/home/$LOCAL_USER/.nix-profile/bin/mise" \
+    "/home/$LOCAL_USER/.local/share/mise/shims/uv" \
     "$@"
 }
 
+while IFS= read -r pkg; do
+  [ -n "$pkg" ] || continue            # skip blank lines
+  case "$pkg" in \#*) continue ;; esac # skip commented lines
+  echo "==> Installing: $pkg"
+  user_uv tool install "$pkg"
+done <<'EOF'
+jiratui
+EOF
+
 # Configure dotfiles ---------------------------------------------------- [BEor]
+
+user_cm() {
+  sudo -iu "$LOCAL_USER" \
+    "/home/"$LOCAL_USER"/.local/share/mise/shims/chezmoi" \
+    "$@"
+}
+
+if [ ! -d "/home/kirei/.local/share/chezmoi" ]; then
+  user_cm init "$DOTFILES_REPO"
+  user_cm apply -v
+else
+  user_cm update -v
+fi
 
 # Set fish as primary shell --------------------------------------------- [wHLo]
 
-FISH="$(command -v fish)"
+FISH=/home/kirei/.nix-profile/bin/fish
 grep -qxF "$FISH" /etc/shells || echo "$FISH" >>/etc/shells
 usermod -s "$FISH" "$LOCAL_USER"
 
@@ -125,7 +196,7 @@ install_nerdfont() (
   curl -fL "$FONT_URL" -o "$FONT_TMP/font.zip"
 
   mkdir -p "$FONT_DEST"
-  7z x -y -o"$FONT_DEST" "$FONT_TMP/font.zip" >/dev/null
+  /home/kirei/.nix-profile/bin/7z x -y -o"$FONT_DEST" "$FONT_TMP/font.zip" >/dev/null
 
   # remove non-font files
   find "$FONT_DEST" -type f ! \( -iname '*.ttf' -o -iname '*.otf' \) -delete
