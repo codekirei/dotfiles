@@ -1,0 +1,13 @@
+source-file ~/.config/tmux/configs/base.conf
+source-file ~/.config/tmux/configs/overrides.conf
+
+{{- if eq .chezmoi.os "darwin" }}
+source-file ~/.config/tmux/configs/macos.conf
+{{- else if eq .chezmoi.os "linux" }}
+source-file ~/.config/tmux/configs/linux.conf
+{{- end }}
+
+# must be last!
+source-file ~/.config/tmux/configs/plugins.conf
+
+# vim: ft=tmux
