@@ -69,17 +69,6 @@ j () {
   $EDITOR $FNAME
 }
 
-# POMODORO ---------------------------------------------------------------------
-# requires openpomodoro-cli
-# requires beeb (beeep cli wrapper)
-p () {
-  # TODO: support linux notifications
-  local SCRIPT='display notification "Session complete! Take a break..." with title "Pomodoro"'
-  pomodoro start "$@" \
-    && find ~/.pomodoro/current \
-    | entr -pz osascript -e $SCRIPT &
-}
-
 # UNIX TIMESTAMPS (ms) ---------------------------------------------------------
 uts () {
   date -r $(("$1"/1000)) '+%F %T %z'
@@ -99,10 +88,6 @@ alias ppm="poetry run python manage.py"
 alias tick="acli jira workitem"
 alias dc="docker compose"
 alias g="git"
-alias t="task"
-alias ts="tasksh"
-alias tt="taskwarrior-tui"
-alias to="taskopen"
 
 # PROMPT -----------------------------------------------------------------------
 PROMPT=$'\n%~\n> '
