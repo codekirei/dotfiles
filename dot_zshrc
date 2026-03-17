@@ -15,7 +15,6 @@ LOCALBIN="$HOME/usr/bin"
 
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 
-export ASDF_DATA_DIR="$XDG_DATA_HOME"/asdf_plugins
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
 export LESSHISTFILE=-
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
@@ -45,7 +44,6 @@ safe_path_prepend () {
 
 safe_path_prepend "$LOCALBIN"
 safe_path_prepend "$HOME/.local/pipx/venvs/poetry/bin"
-safe_path_prepend "${ASDF_DATA_DIR}/shims"
 
 export PATH
 
@@ -54,7 +52,6 @@ eval "$(direnv hook zsh)"
 
 # GOLANG -----------------------------------------------------------------------
 CGO_ENABLED=1
-# source ~/.asdf/plugins/golang/set-env.zsh
 export GOBIN="$LOCALBIN"
 
 # OTHER GLOBAL ENV VARS --------------------------------------------------------
@@ -72,6 +69,12 @@ j () {
 # UNIX TIMESTAMPS (ms) ---------------------------------------------------------
 uts () {
   date -r $(("$1"/1000)) '+%F %T %z'
+}
+
+# SECRETS ----------------------------------------------------------------------
+export AGE_SECRETS="$XDG_DATA_HOME"/age/secrets.age
+secret () {
+  age -d "$AGE_SECRETS" | grep "^${1}=" | cut -d= -f2-
 }
 
 # [F]ind [I]n [F]ile with FZF --------------------------------------------------
