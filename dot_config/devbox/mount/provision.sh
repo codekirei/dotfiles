@@ -109,6 +109,7 @@ rust
 go
 
 # tools
+age
 bat
 caddy
 chezmoi
