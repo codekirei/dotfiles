@@ -83,6 +83,7 @@ git
 lazysql
 mdp
 p7zip
+starship
 tig
 tmuxPlugins.tmux-powerline
 tshark
