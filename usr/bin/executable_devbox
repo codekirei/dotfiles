@@ -75,6 +75,10 @@ run)
   limactl shell --workdir $WORKDIR $VM_NAME -- "$@"
   ;;
 
+inject)
+  limactl copy "$1" "devbox:$2"
+  ;;
+
 create)
   limactl create -y --name=$VM_NAME ~/.config/devbox/lima.yaml
   rm ~/.lima/"$VM_NAME"/lima.yaml

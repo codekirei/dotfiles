@@ -73,9 +73,6 @@ uts () {
 
 # SECRETS ----------------------------------------------------------------------
 export AGE_SECRETS="$XDG_DATA_HOME"/age/secrets.age
-secret () {
-  age -d "$AGE_SECRETS" | grep "^${1}=" | cut -d= -f2-
-}
 
 # [F]ind [I]n [F]ile with FZF --------------------------------------------------
 fif() {
