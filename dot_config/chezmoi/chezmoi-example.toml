@@ -1,3 +1,4 @@
 [data]
   git.email = ""
   tmux.prefix = "C-f"
+  fish.age_secrets = ""
