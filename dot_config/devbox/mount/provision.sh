@@ -155,6 +155,7 @@ while IFS= read -r pkg; do
   user_uv tool install "$pkg"
 done <<'EOF'
 jiratui
+trash-cli
 EOF
 
 # Configure dotfiles ---------------------------------------------------- [BEor]
