@@ -6,8 +6,6 @@ VM_NAME=devbox
 WORKDIR=/home/kirei
 
 ## TODO
-# - extract (copy from)
-# - inject (copy to)
 # - ensure limactl exists
 
 usage() {
@@ -16,15 +14,17 @@ Usage:
   devbox <command> [args...]
 
 Commands:
-  up                Spin up the devbox.
-  down              Shut down the devbox.
-  shell             Open a shell in the devbox.
-  status            Show status of devbox.
-  config            Edit devbox config.
-  reboot            Power cycles devbox.
-  create            Creates devbox.
-  destroy           Destroys devbox.
-  run <cmd...>      Run an arbitrary command in the devbox.
+  up                Spin up the vm.
+  down              Shut down the vm.
+  shell             Open a shell in the vm.
+  status            Show status of vm.
+  config            Edit vm config.
+  reboot            Power cycles vm.
+  run <cmd...>      Run an arbitrary command in the vm.
+  inject            Inject a file from host path to vm path.
+  extract           Extract a file from vm path to host path.
+  create            Creates vm.
+  destroy           Destroys vm.
   help              Show this help.
 
 Examples:
@@ -76,7 +76,11 @@ run)
   ;;
 
 inject)
-  limactl copy "$1" "devbox:$2"
+  limactl copy "$1" "$VM_NAME:$2"
+  ;;
+
+extract)
+  limactl copy "$VM_NAME:$1" "$2"
   ;;
 
 create)
