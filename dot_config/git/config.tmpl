@@ -3,6 +3,7 @@
 [user]
 	name = Jacob Blakely
 	email = {{ .git.email | quote }}
+	signingkey = {{ .git.signingkey }}
 [credential]
 	helper = age
 [credential "https://github.com"]
@@ -14,8 +15,6 @@
 	rebase = true
 [push]
 	autoSetupRemote = true
-[include]
-	path = ~/.config/git/local-overrides
 [core]
 	pager = delta
 	excludesFile = ~/.config/git/ignore
@@ -26,5 +25,11 @@
 	side-by-side = true
 [merge]
 	conflictStyle = zdiff3
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[tag]
+	gpgSign = true
 
 ; vim: ft=gitconfig
