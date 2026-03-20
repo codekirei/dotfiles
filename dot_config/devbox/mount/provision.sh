@@ -30,6 +30,8 @@ DOTFILES_REPO="https://github.com/codekirei/dotfiles.git"
 
 # Filesystem setup ------------------------------------------------------ [bLks]
 
+hostnamectl set-hostname brisingr
+
 chown kirei:kirei "$LOCAL_HOME"/.local/bin
 
 mkdir -p "$LOCAL_HOME"/usr
