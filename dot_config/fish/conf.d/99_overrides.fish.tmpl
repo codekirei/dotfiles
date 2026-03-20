@@ -1,1 +1,2 @@
 set -gx AGE_SECRETS {{ .fish.age_secrets | default "$XDG_DATA_HOME/age/secrets.age" }}
+set -gx GIT_SIGNINGKEY {{ .git.signingkey }}

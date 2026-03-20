@@ -7,6 +7,7 @@ WORKDIR=/home/kirei
 
 ## TODO
 # - ensure limactl exists
+# - ensure GIT_SIGNINGKEY exists
 
 usage() {
   cat <<'EOF'
@@ -14,7 +15,7 @@ Usage:
   devbox <command> [args...]
 
 Commands:
-  up                Spin up the vm.
+  up                Spin up the vm and ensure git signing key is added to ssh agent on host.
   down              Shut down the vm.
   shell             Open a shell in the vm.
   status            Show status of vm.
@@ -44,6 +45,7 @@ shift
 
 case "$cmd" in
 up)
+  ssh-add $GIT_SIGNINGKEY
   limactl start $VM_NAME
   ;;
 
