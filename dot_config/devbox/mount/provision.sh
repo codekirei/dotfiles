@@ -85,6 +85,8 @@ git
 lazysql
 mdp
 p7zip
+podman
+podman-tui
 starship
 tig
 tmuxPlugins.tmux-powerline
@@ -157,6 +159,7 @@ while IFS= read -r pkg; do
   user_uv tool install "$pkg"
 done <<'EOF'
 jiratui
+podman-compose
 trash-cli
 EOF
 
