@@ -74,6 +74,11 @@ uts () {
 # SECRETS ----------------------------------------------------------------------
 export AGE_SECRETS="$XDG_DATA_HOME"/age/secrets.age
 export GIT_SIGNINGKEY={{ .git.signingkey }}
+{{ if eq .chezmoi.os "darwin" }}
+export SSH_AUTH_SOCK="$HOME"/.ssh/agent/homebrew.ssh-agent.sock
+if [ ! -S "$SSH_AUTH_SOCK" ]; then
+    /opt/homebrew/bin/ssh-agent -a "$SSH_AUTH_SOCK" > /dev/null
+fi{{ end }}
 
 # [F]ind [I]n [F]ile with FZF --------------------------------------------------
 fif() {
