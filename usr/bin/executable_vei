@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# [V]ercel [E]nvironment [I]njector
+
+set -euo pipefail
+
+REPO_NAME=$(basename "$(git rev-parse --show-toplevel)")
+
+if [[ "$(uname)" == "Darwin" ]]; then
+  ENV_FILE="/tmp/.env.${REPO_NAME}.$$"
+else
+  ENV_FILE="/dev/shm/.env.${REPO_NAME}.$$"
+fi
+
+trap 'rm -f "$ENV_FILE"' EXIT
+
+pnpm exec vercel env pull "$ENV_FILE"
+set -a
+source "$ENV_FILE"
+set +a
+
+rm -f "$ENV_FILE"
+
+exec pnpm "$@"
