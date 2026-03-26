@@ -22,6 +22,10 @@ images:
 - location: https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-genericcloud-arm64.qcow2
   arch: aarch64
 
+# RESOURCES ------------------------------------------------------------------------------------------------------------
+
+memory: "12GiB"
+
 # FILESYSTEM MOUNTPOINTS -----------------------------------------------------------------------------------------------
 
 mounts:
