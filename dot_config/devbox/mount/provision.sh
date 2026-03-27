@@ -92,6 +92,7 @@ podman-tui
 starship
 tig
 tmuxPlugins.tmux-powerline
+tree-sitter
 tshark
 EOF
 
