@@ -1,7 +1,7 @@
 function g --description 'git'
-  git
+  git $argv
 end
 
 function e --description 'edit with $EDITOR'
-  $EDITOR
+  $EDITOR $argv
 end
