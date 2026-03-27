@@ -10,6 +10,7 @@ local function config()
 
   require('telescope').setup({
     defaults = {
+      preview = { treesitter = false },
       layout_strategy = 'vertical',
       layout_config = {
         width = 0.99,
@@ -29,7 +30,6 @@ end
 
 return {
   'nvim-telescope/telescope.nvim',
-  tag = '0.1.3',
   config = config,
   dependencies = { 'nvim-lua/plenary.nvim' },
 }
