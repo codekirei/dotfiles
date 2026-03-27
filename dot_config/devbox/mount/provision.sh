@@ -135,7 +135,6 @@ jq
 jqp
 lazydocker
 lazygit
-neovim
 opencode
 redis
 ripgrep
@@ -147,6 +146,7 @@ EOF
 
 user_mise use -g "node@lts"
 user_mise use -g "python@3.12"
+user_mise use -g "neovim@nightly"
 
 # Install UV packages --------------------------------------------------- [ubXk]
 
