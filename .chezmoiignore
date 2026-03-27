@@ -1,2 +1,6 @@
 readme.md
 license
+
+{{- if ne .chezmoi.os "linux" }}
+usr/bin/syu
+{{- end }}

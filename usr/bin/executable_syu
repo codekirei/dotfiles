@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# syu — update all the things
+
+bold=$(tput bold)
+reset=$(tput sgr0)
+green=$(tput setaf 2)
+
+section() {
+  echo
+  echo "${bold}${green}==> $1${reset}"
+}
+
+# 1. apt-get
+section "apt-get"
+sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get autoremove -y
+
+# 2. nix
+section "nix"
+nix profile upgrade --all
+
+# 3. mise — self-update first, then upgrade tools
+section "mise (self)"
+mise self-update --yes
+section "mise (tools)"
+mise upgrade
+
+# 4. uv
+section "uv"
+uv tool upgrade --all
