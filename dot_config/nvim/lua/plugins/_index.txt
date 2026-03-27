@@ -39,7 +39,6 @@ stevearc/dressing.nvim             | general UI improvements
 
 echasnovski/mini.map             | toggleable vertical code map
 jonarrien/telescope-cmdline.nvim | floating cmd via <leader>;
-luckasRanarison/nvim-devdocs     | devdocs via telescope
 nvim-telescope/telescope.nvim    | search interface
 
 -- PASSIVE EDITING IMPROVEMENTS ------------------------------------------------

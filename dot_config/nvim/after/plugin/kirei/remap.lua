@@ -99,16 +99,14 @@ k('n', ']d', diag.goto_next, { desc = 'Go to next diagnostic line' })
 
 -- plugins ---------------------------------------------------------------------
 
-require('which-key').register({
-  ['<leader>'] = {
-    b = { name = '+buffer' },
-    e = { name = '+external' },
-    f = { name = '+find' },
-    g = { name = '+generate' },
-    r = { name = '+refactor' },
-    t = { name = '+toggle' },
-    x = { name = '+expand' },
-  },
+require('which-key').add({
+  { '<leader>b', group = 'buffer' },
+  { '<leader>e', group = 'external' },
+  { '<leader>f', group = 'find' },
+  { '<leader>g', group = 'generate' },
+  { '<leader>r', group = 'refactor' },
+  { '<leader>t', group = 'toggle' },
+  { '<leader>x', group = 'expand' },
 })
 
 k('n', '<leader>l', require('lint').try_lint, { desc = 'Lint this file' })
@@ -118,7 +116,6 @@ k('n', '<leader>tm', require('mini.map').toggle, { desc = 'Toggle minimap' })
 k('n', '<leader>tb', ':BlameToggle<CR>', { desc = 'Toggle git blame' })
 k('n', '<leader>tl', ':LspRestart<CR>', { desc = 'Restart LSP' })
 k('n', '<leader>tz', ':ZenMode<CR>', { desc = 'Toggle zen mode' })
-k('n', '<leader>fd', ':DevdocsOpenCurrent<CR>', { desc = 'Find dev docs' })
 k('n', '<leader>gr', insert_random_char, { desc = 'Generate random alpha char' })
 
 local entry_display = require('telescope.pickers.entry_display')

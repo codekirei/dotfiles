@@ -34,10 +34,10 @@ local function config()
       'lua_ls',
       'marksman', -- markdown
       'pyright', -- python
-      'ruff_lsp', -- python
+      'ruff', -- python
       'sqlls',
       'rust_analyzer',
-      'tsserver', -- typescript
+      'ts_ls', -- typescript
       'yamlls',
     },
     handlers = {
