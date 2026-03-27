@@ -157,7 +157,7 @@ local function config()
     -- log_level = vim.log.levels.DEBUG,
   })
 
-  vim.lsp.set_log_level(vim.log.levels.DEBUG)
+  vim.lsp.log.set_level(vim.log.levels.WARN)
 end
 
 return {
