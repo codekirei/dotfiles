@@ -24,7 +24,6 @@ local function config()
     -- Use LSP server names, not Mason package names.
     ensure_installed = {
       'ansiblels',
-      'clangd', -- c, c++
       'cssls',
       'docker_compose_language_service',
       'dockerls',
@@ -100,9 +99,11 @@ local function config()
     -- Use Mason package names.
     ensure_installed = {
       'clang-format',
+      'eslint_d',
       'gofumpt',
       'goimports',
       'prettier',
+      'shfmt',
       'stylua',
       'sql-formatter',
       'sqlfluff',
