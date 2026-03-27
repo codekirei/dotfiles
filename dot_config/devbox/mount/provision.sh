@@ -54,6 +54,7 @@ while IFS= read -r pkg; do
 done <<'EOF'
 build-essential
 fontconfig
+unzip
 EOF
 
 # Install nix packages -------------------------------------------------- [ekWP]
