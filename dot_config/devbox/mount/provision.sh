@@ -143,6 +143,9 @@ watchexec
 yq
 EOF
 
+user_mise use -g "node@lts"
+user_mise use -g "python@3.12"
+
 # Install UV packages --------------------------------------------------- [ubXk]
 
 # Packages are symlinked in ~/.local/bin
