@@ -164,6 +164,7 @@ while IFS= read -r pkg; do
   echo "==> Installing: $pkg"
   user_uv tool install "$pkg"
 done <<'EOF'
+git-revise
 jiratui
 podman-compose
 trash-cli
