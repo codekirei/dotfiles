@@ -1,0 +1,7 @@
+#!/bin/sh
+buf=$(cat "$@" | base64 | tr -d '\n')
+if [ -n "$TMUX" ]; then
+    printf '\033Ptmux;\033\033]52;c;%s\a\033\\' "$buf" > /dev/tty
+else
+    printf '\033]52;c;%s\a' "$buf" > /dev/tty
+fi

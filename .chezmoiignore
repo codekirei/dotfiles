@@ -1,6 +1,7 @@
 readme.md
 license
 
-{{- if ne .chezmoi.os "linux" }}
+{{- if ne .chezmoi.hostname "brisingr" }}
 usr/bin/syu
+usr/bin/copy
 {{- end }}
