@@ -128,6 +128,7 @@ local function config()
     formatters_by_ft = {
       ['c++'] = { 'clang-format' },
       c = { 'clang-format' },
+      css = { 'prettier' },
       go = { 'goimports', 'gofumpt' },
       javascript = { 'prettier' },
       json = { 'prettier' },
