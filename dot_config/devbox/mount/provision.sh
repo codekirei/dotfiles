@@ -117,6 +117,7 @@ rust
 go
 
 # tools
+acli
 age
 bat
 caddy
