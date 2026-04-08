@@ -102,6 +102,7 @@ local function config()
       'eslint_d',
       'gofumpt',
       'goimports',
+      'oxfmt',
       'prettier',
       'shfmt',
       'stylua',
@@ -128,18 +129,18 @@ local function config()
     formatters_by_ft = {
       ['c++'] = { 'clang-format' },
       c = { 'clang-format' },
-      css = { 'prettier' },
+      css = { 'prettier', 'oxfmt' },
       go = { 'goimports', 'gofumpt' },
-      javascript = { 'prettier' },
-      json = { 'prettier' },
-      jsonc = { 'prettier' },
+      javascript = { 'prettier', 'oxfmt' },
+      json = { 'prettier', 'oxfmt' },
+      jsonc = { 'prettier', 'oxfmt' },
       lua = { 'stylua' },
-      markdown = { 'prettier' },
+      markdown = { 'prettier', 'oxfmt' },
       rust = { 'rustfmt' }, -- see comment at EOF
       sh = { 'shfmt' },
       sql = { 'sql_formatter' },
-      typescript = { 'prettier' },
-      typescriptreact = { 'prettier' },
+      typescript = { 'prettier', 'oxfmt' },
+      typescriptreact = { 'prettier', 'oxfmt' },
     },
     formatters = {
       sql_formatter = {
@@ -147,6 +148,54 @@ local function config()
       },
       prettier = {
         prefer_local = true,
+        condition = function(self, ctx)
+          local git = vim.fs.find('.git', { path = ctx.dirname, upward = true })[1]
+          if not git then return false end
+          local root = vim.fs.dirname(git)
+          return vim.fs.find({
+            '.prettierrc',
+            '.prettierrc.js',
+            '.prettierrc.cjs',
+            '.prettierrc.mjs',
+            '.prettierrc.json',
+            '.prettierrc.json5',
+            '.prettierrc.yaml',
+            '.prettierrc.yml',
+            '.prettierrc.toml',
+            'prettier.config.js',
+            'prettier.config.cjs',
+            'prettier.config.mjs',
+            'prettier.config.ts',
+          }, { path = root, limit = 1 })[1] ~= nil
+        end,
+      },
+      oxfmt = {
+        command = function(self, ctx)
+          local git = vim.fs.find('.git', { path = ctx.dirname, upward = true })[1]
+          if git then
+            local local_bin = vim.fs.dirname(git) .. '/node_modules/.bin/oxfmt'
+            if vim.fn.executable(local_bin) == 1 then
+              return local_bin
+            end
+          end
+          return 'oxfmt'
+        end,
+        args = function(self, ctx)
+          local git = vim.fs.find('.git', { path = ctx.dirname, upward = true })[1]
+          local args = { '--stdin-filepath', ctx.filename }
+          if git then
+            local config = vim.fs.dirname(git) .. '/.oxfmtrc.json'
+            vim.list_extend(args, { '-c', config })
+          end
+          return args
+        end,
+        stdin = true,
+        condition = function(self, ctx)
+          local git = vim.fs.find('.git', { path = ctx.dirname, upward = true })[1]
+          if not git then return true end
+          local root = vim.fs.dirname(git)
+          return vim.fs.find({ '.oxfmtrc.json' }, { path = root, limit = 1 })[1] ~= nil
+        end,
       },
       shfmt = {
         args = { '-i', '2' },
