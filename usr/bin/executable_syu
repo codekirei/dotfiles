@@ -28,3 +28,7 @@ mise upgrade
 # 4. uv
 section "uv"
 uv tool upgrade --all
+
+# 4. chezmoi (dotfiles)
+section "chezmoi"
+chezmoi update
