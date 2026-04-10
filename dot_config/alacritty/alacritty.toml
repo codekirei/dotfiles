@@ -14,7 +14,7 @@ decorations = "None"
 normal.family = "Monoid Nerd Font Mono"
 bold.family = "Monoid Nerd Font Mono"
 italic.family = "Monoid Nerd Font Mono"
-size = 16
+size = 17
 
 # Modified Argonaut Color Theme
 # https://github.com/alacritty/alacritty-theme
