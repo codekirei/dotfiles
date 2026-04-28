@@ -1,0 +1,5 @@
+[python]
+# Only show when inside a virtual environment — skip the slow version scan
+detect_files = []
+detect_folders = []
+detect_extensions = []
